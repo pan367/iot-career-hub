@@ -3,7 +3,7 @@ window.App = (function () {
   "use strict";
 
   /* 站点配置:部署后填入 "用户名/仓库名",投稿按钮会自动指向 GitHub Issue 模板 */
-  const SITE_CONFIG = { repo: "" };
+  const SITE_CONFIG = { repo: "pan367/iot-career-hub" };
 
   const todayISO = () => {
     const d = new Date();
