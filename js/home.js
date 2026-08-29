@@ -58,4 +58,23 @@
 
   /* 菜单初始为关闭状态 */
   menu.classList.add("closed");
+
+  /* 背景视频失败兜底:加载/播放异常时隐藏视频层,露出黑底网格,避免黑屏 */
+  const homeVideo = document.querySelector(".home-video");
+  if (homeVideo) {
+    const fallback = () => {
+      homeVideo.style.display = "none";
+      document.querySelector(".home-hero").style.background =
+        "radial-gradient(560px 300px at 50% 0%, rgba(175,221,255,.08), transparent 72%)";
+    };
+    homeVideo.addEventListener("error", fallback);
+    /* 部分移动浏览器 autoplay 被拦:尝试手动播放一次 */
+    homeVideo.addEventListener("canplay", () => {
+      const p = homeVideo.play();
+      if (p && p.catch) p.catch(() => { /* 忽略,静音视频一般可自动播放 */ });
+    });
+    setTimeout(() => {
+      if (homeVideo.readyState === 0) fallback(); /* 8 秒未加载出数据则降级 */
+    }, 8000);
+  }
 })();
