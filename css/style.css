@@ -721,6 +721,38 @@ main { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; paddin
   @page { margin: 12mm 14mm; }
 }
 
+/* ============ 学历匹配板块 ============ */
+.deg-select {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.deg-card {
+  flex: 1 1 180px;
+  max-width: 240px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 18px 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  transition: border-color .2s, background .2s, transform .15s;
+  color: var(--text);
+}
+.deg-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.deg-card.on {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.deg-ico { font-size: 22px; }
+.deg-name { font-size: 17px; font-weight: 700; }
+.deg-sub { font-size: 12px; color: var(--text-3); }
+.badge.b-deg { background: rgba(175, 221, 255, .16); color: var(--accent); border: 1px solid rgba(175, 221, 255, .3); }
+
 /* ============ 页脚 / Toast ============ */
 .site-footer { border-top: 1px solid var(--border); background: var(--card); }
 .footer-inner {

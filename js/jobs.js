@@ -8,9 +8,24 @@
   let favs = lsGet(FAV_KEY, []);
 
   const state = {
-    q: "", type: "all", direction: "all", city: "all",
+    q: "", type: "all", direction: "all", city: "all", degree: "all",
     sort: "deadline", hideExpired: false, favOnly: false,
   };
+
+  /* 学历筛选默认值:与「学历匹配」板块联动(localStorage) */
+  (function initDegree() {
+    const saved = lsGet("iot-hub-degree", "all");
+    state.degree = ["本科", "硕士", "博士"].includes(saved) ? saved : "all";
+    const sel = document.getElementById("fDegree");
+    if (sel && state.degree !== "all") sel.value = state.degree;
+    /* 同会话内学历板块切换时实时联动 */
+    window.addEventListener("iot:degree", (e) => {
+      state.degree = e.detail;
+      const sel2 = document.getElementById("fDegree");
+      if (sel2) sel2.value = e.detail;
+      render();
+    });
+  })();
 
   const isExpired = (j) => j.deadline && daysUntil(j.deadline) < 0;
 
@@ -66,6 +81,7 @@
       if (state.type !== "all" && j.type !== state.type) return false;
       if (state.direction !== "all" && j.direction !== state.direction) return false;
       if (state.city !== "all" && j.city.split("/").map(s => s.trim()).indexOf(state.city) === -1) return false;
+      if (state.degree !== "all" && !App.degreeMatched(j.degree, state.degree)) return false;
       if (state.favOnly && !favs.includes(j.id)) return false;
       if (state.hideExpired && isExpired(j)) return false;
       if (state.q) {
@@ -114,6 +130,11 @@
     document.getElementById("fType").addEventListener("change", e => { state.type = e.target.value; render(); });
     document.getElementById("fDirection").addEventListener("change", e => { state.direction = e.target.value; render(); });
     document.getElementById("fCity").addEventListener("change", e => { state.city = e.target.value; render(); });
+    document.getElementById("fDegree").addEventListener("change", e => {
+      state.degree = e.target.value;
+      lsSet("iot-hub-degree", state.degree === "all" ? null : state.degree);
+      render();
+    });
     document.getElementById("fSort").addEventListener("change", e => { state.sort = e.target.value; render(); });
     document.getElementById("fHideExpired").addEventListener("change", e => { state.hideExpired = e.target.checked; render(); });
     document.getElementById("fFavOnly").addEventListener("change", e => { state.favOnly = e.target.checked; render(); });

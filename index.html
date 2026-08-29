@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=20260830">
 </head>
 <body>
 
@@ -33,8 +33,10 @@
       <span class="brand-sub">物联网工程 · 2027 届</span>
     </div>
     <nav class="tabs" id="navTabs" aria-label="主导航">
+      <button class="tab" data-page="home">首页</button>
       <button class="tab active" data-page="jobs">岗位看板</button>
       <button class="tab" data-page="chengdu">成都专场</button>
+      <button class="tab" data-page="degree">学历匹配</button>
       <button class="tab" data-page="timeline">秋招时间线</button>
       <button class="tab" data-page="interviews">面经笔试</button>
       <button class="tab" data-page="roadmap">学习路线</button>
@@ -194,6 +196,7 @@
       </select>
       <select id="fDirection"><option value="all">全部方向</option></select>
       <select id="fCity"><option value="all">全部城市</option></select>
+      <select id="fDegree"><option value="all">全部学历</option><option>本科</option><option>硕士</option><option>博士</option></select>
       <select id="fSort">
         <option value="deadline">按截止时间排序</option>
         <option value="updated">按更新时间排序</option>
@@ -238,6 +241,39 @@
     <div class="empty" id="chengduEmpty" hidden>
       <p>没有符合条件的成都岗位。</p>
       <p class="empty-sub">试试放宽筛选;发现好岗位欢迎到「我要投稿」分享!</p>
+    </div>
+  </section>
+
+  <!-- ============ 学历匹配 ============ -->
+  <section id="page-degree" class="page">
+    <div class="page-head">
+      <h2>学历匹配</h2>
+      <p>选择你的学历,自动解析各岗位的学历要求(自由文本 → 本科/硕士/博士归类),只展示你能投的岗位。</p>
+    </div>
+
+    <div class="deg-select" id="degSelect">
+      <button class="deg-card" data-deg="本科">
+        <span class="deg-ico">🎓</span>
+        <span class="deg-name">本科</span>
+        <span class="deg-sub">含"本硕"可投岗位</span>
+      </button>
+      <button class="deg-card" data-deg="硕士">
+        <span class="deg-ico">🎓</span>
+        <span class="deg-name">硕士</span>
+        <span class="deg-sub">含"本硕/硕士"可投岗位</span>
+      </button>
+      <button class="deg-card" data-deg="博士">
+        <span class="deg-ico">🎓</span>
+        <span class="deg-name">博士</span>
+        <span class="deg-sub">含"博/本硕博"可投岗位</span>
+      </button>
+    </div>
+
+    <div class="list-meta" id="degCount"></div>
+    <div class="cards" id="degList"></div>
+    <div class="empty" id="degEmpty" hidden>
+      <p>该学历下暂无匹配岗位。</p>
+      <p class="empty-sub">试试切换学历;或到「我要投稿」补充新岗位。</p>
     </div>
   </section>
 
@@ -465,20 +501,21 @@
 
 <div id="toast" role="status" aria-live="polite"></div>
 
-<script src="data/jobs.js"></script>
-<script src="data/timeline.js"></script>
-<script src="data/interviews.js"></script>
-<script src="data/roadmap.js"></script>
-<script src="data/resume.js"></script>
-<script src="js/app.js"></script>
-<script src="js/home.js"></script>
-<script src="js/jobs.js"></script>
-<script src="js/chengdu.js"></script>
-<script src="js/timeline.js"></script>
-<script src="js/interviews.js"></script>
-<script src="js/roadmap.js"></script>
-<script src="js/resume.js"></script>
-<script src="js/apply.js"></script>
-<script src="js/submit.js"></script>
+<script src="data/jobs.js?v=20260830"></script>
+<script src="data/timeline.js?v=20260830"></script>
+<script src="data/interviews.js?v=20260830"></script>
+<script src="data/roadmap.js?v=20260830"></script>
+<script src="data/resume.js?v=20260830"></script>
+<script src="js/app.js?v=20260830"></script>
+<script src="js/home.js?v=20260830"></script>
+<script src="js/jobs.js?v=20260830"></script>
+<script src="js/chengdu.js?v=20260830"></script>
+<script src="js/degree.js?v=20260830"></script>
+<script src="js/timeline.js?v=20260830"></script>
+<script src="js/interviews.js?v=20260830"></script>
+<script src="js/roadmap.js?v=20260830"></script>
+<script src="js/resume.js?v=20260830"></script>
+<script src="js/apply.js?v=20260830"></script>
+<script src="js/submit.js?v=20260830"></script>
 </body>
 </html>

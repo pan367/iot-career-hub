@@ -94,7 +94,7 @@ window.App = (function () {
   };
 
   /* ---------- 页面切换(hash 路由) ---------- */
-  const PAGES = ["home", "jobs", "chengdu", "timeline", "interviews", "roadmap", "resume", "apply", "submit"];
+  const PAGES = ["home", "jobs", "chengdu", "degree", "timeline", "interviews", "roadmap", "resume", "apply", "submit"];
   const showPage = (name) => {
     if (!PAGES.includes(name)) name = "home";
     document.querySelectorAll(".page").forEach(p =>
@@ -142,6 +142,29 @@ window.App = (function () {
     });
   };
 
+  /* ---------- 学历归类引擎(岗位 degree 自由文本 → 学历集合) ---------- */
+  /* 返回 { 本科, 硕士, 博士 } 布尔集合;"在校生"等无明确学历词视为不限(全可投) */
+  const classifyDegree = (text) => {
+    const t = text || "";
+    const set = { 本科: false, 硕士: false, 博士: false };
+    /* "及以上" 语义:该学历及以上均可投 */
+    if (t.includes("本科及以上")) { set.本科 = true; set.硕士 = true; set.博士 = true; return set; }
+    if (t.includes("硕士及以上")) { set.硕士 = true; set.博士 = true; return set; }
+    /* 明确学历词 */
+    if (t.includes("本")) set.本科 = true;
+    if (t.includes("硕")) set.硕士 = true;
+    if (t.includes("博")) set.博士 = true;
+    /* 在校生 / 应届生 / 无学历词(仅年份范围)→ 不限 */
+    const hasWord = set.本科 || set.硕士 || set.博士;
+    if (!hasWord) { set.本科 = true; set.硕士 = true; set.博士 = true; }
+    return set;
+  };
+  /* myDegree: "本科"|"硕士"|"博士" 是否可投该岗位 */
+  const degreeMatched = (degreeText, myDegree) => {
+    const set = classifyDegree(degreeText);
+    return !!set[myDegree];
+  };
+
   const init = () => {
     initTheme();
     initRouter();
@@ -152,6 +175,7 @@ window.App = (function () {
   return {
     SITE_CONFIG, todayISO, lsGet, lsSet, daysUntil, fmtCN, fmtShort,
     escapeHtml, companyAvatar, toast, copyText, updateStats, init,
+    classifyDegree, degreeMatched,
   };
 })();
 
