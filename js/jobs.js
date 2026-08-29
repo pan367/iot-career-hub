@@ -53,6 +53,7 @@
         <span class="dl-badge ${dl.cls}">${dl.label}</span>
         <div class="job-actions">
           <button class="btn" data-copy="${escapeHtml(j.id)}" title="复制为群聊分享文案">复制</button>
+          <button class="btn" data-opt="${escapeHtml(j.id)}" title="按此岗位方向优化简历">简历优化</button>
           <a class="btn btn-primary" href="${escapeHtml(j.url)}" target="_blank" rel="noopener">去投递 ↗</a>
         </div>
       </div>
@@ -139,6 +140,13 @@
           `—— 来自「IoT 求职雷达」`,
         ].join("\n"));
         toast(ok ? "已复制分享文案,去粘贴给同学吧" : "复制失败,请手动复制");
+        return;
+      }
+      const opt = e.target.closest("[data-opt]");
+      if (opt) {
+        const job = DATA.find(j => j.id === opt.dataset.opt);
+        const dirMap = { "嵌入式软件": "embedded", "硬件": "hardware", "物联网平台": "iot", "驱动": "driver", "测试": "test", "算法": "algorithm" };
+        location.hash = "/resume?dir=" + (dirMap[job.direction] || "embedded");
       }
     });
   }

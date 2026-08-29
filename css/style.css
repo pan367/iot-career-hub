@@ -531,6 +531,102 @@ main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
 .st-btn { font-size: 11.5px; padding: 3px 9px; border-radius: 999px; }
 .st-btn.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 
+/* ============ 简历工坊 ============ */
+.resume-opt-panel { margin-bottom: 16px; }
+.opt-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+.opt-row select {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  padding: 8px 10px; font-size: 13px; color: var(--text); outline: none;
+}
+.opt-row select:focus { border-color: var(--accent); }
+.opt-note { font-size: 12.8px; color: var(--text-2); margin-top: 10px; line-height: 1.7; }
+.opt-note p { margin-top: 4px; }
+.resume-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.block-title { font-size: 14px; margin: 16px 0 8px; padding-bottom: 4px; border-bottom: 1px dashed var(--border); }
+.resume-row {
+  border: 1px solid var(--border); border-radius: 10px; padding: 10px;
+  margin-bottom: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 7px;
+  background: var(--bg);
+}
+.resume-row input, .resume-row textarea {
+  background: var(--card); border: 1px solid var(--border); border-radius: 7px;
+  padding: 7px 9px; font-size: 12.5px; color: var(--text); font-family: inherit; outline: none; resize: vertical;
+}
+.resume-row input:focus, .resume-row textarea:focus { border-color: var(--accent); }
+.resume-row input.rp-desc-wrap, .resume-row textarea { grid-column: 1 / -1; }
+.resume-row .re-del { justify-self: end; grid-column: 1 / -1; }
+#editorPanel textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 9px 11px; font-size: 13px; color: var(--text); font-family: inherit; outline: none; resize: vertical; }
+#editorPanel textarea:focus { border-color: var(--accent); }
+
+/* 预览区 */
+.preview-panel { position: sticky; top: 76px; }
+.preview-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.preview-bar h3 { flex: 1; }
+
+/* A4 纸张 */
+.resume-paper {
+  background: #fff; color: #1f2937;
+  width: 100%; min-height: 560px;
+  border-radius: 6px; box-shadow: var(--shadow-hover);
+  padding: 30px 34px;
+  font-size: 12.5px; line-height: 1.6;
+}
+.paper-head { text-align: center; border-bottom: 2px solid #0e9488; padding-bottom: 10px; margin-bottom: 12px; }
+.paper-name { font-size: 22px; font-weight: 800; color: #111827; }
+.paper-contact { font-size: 12px; color: #4b5563; margin-top: 3px; }
+.paper-intent { font-size: 12px; color: #0e9488; margin-top: 3px; font-weight: 600; }
+.paper-section { margin-bottom: 10px; }
+.paper-section h5 {
+  font-size: 13px; color: #0e9488; font-weight: 700;
+  border-left: 3px solid #0e9488; padding-left: 8px; margin-bottom: 6px;
+}
+.paper-item { margin-bottom: 6px; }
+.pi-head { display: flex; gap: 10px; flex-wrap: wrap; font-size: 12.5px; }
+.pi-head b { color: #111827; }
+.pi-head span { color: #6b7280; font-size: 11.5px; }
+.pi-sub { color: #374151; font-size: 12px; }
+.pi-courses { color: #6b7280; font-size: 11.5px; margin-left: 8px; }
+.pi-desc { color: #4b5563; font-size: 12px; margin-top: 2px; }
+.paper-skills { display: flex; flex-wrap: wrap; gap: 5px; }
+.ps-chip { background: #e6f4f3; color: #0e9488; border-radius: 999px; padding: 1px 9px; font-size: 11px; font-weight: 600; }
+
+/* 体检报告 */
+#rReport { margin-bottom: 12px; }
+.check-summary { border-radius: 10px; padding: 10px 14px; font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+.check-summary.ok { background: rgba(21, 128, 61, .12); color: var(--ok); }
+.check-summary.warn { background: rgba(217, 119, 6, .12); color: var(--warn); }
+.check-summary.bad { background: rgba(217, 72, 46, .12); color: var(--danger); }
+.check-list { list-style: none; }
+.check-list li {
+  display: flex; gap: 9px; padding: 7px 10px; border-radius: 8px; margin-bottom: 5px;
+  background: var(--bg); font-size: 12.5px; color: var(--text-2);
+}
+.check-list li.pass { border-left: 3px solid var(--ok); }
+.check-list li.fail { border-left: 3px solid var(--warn); }
+.check-list b { font-size: 12.5px; color: var(--text); }
+.check-list p { font-size: 12px; margin-top: 2px; line-height: 1.55; }
+.ck-ico { flex-shrink: 0; }
+
+/* 匹配报告 */
+#rdReportBox { margin-top: 10px; }
+.match-title { font-weight: 700; font-size: 13.5px; margin-bottom: 8px; }
+.match-row { border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; margin-bottom: 8px; background: var(--bg); }
+.match-hit, .match-miss { font-size: 12px; color: var(--text-2); margin-top: 5px; display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+.match-hit { color: var(--ok); }
+
+/* 打印:只输出简历纸张 */
+@media print {
+  body { background: #fff !important; }
+  .disclaimer, .site-header, .site-footer, #toast, .resume-opt-panel,
+  .page-head, #editorPanel, .preview-bar, #rReport, .filters, .hero, .apply-tip { display: none !important; }
+  main { max-width: none; padding: 0; }
+  #page-resume { display: block !important; }
+  .resume-grid { display: block; }
+  .preview-panel { position: static; box-shadow: none; border: none; padding: 0; }
+  .resume-paper { box-shadow: none; border: none; width: 100%; padding: 0; min-height: 0; }
+  @page { margin: 12mm 14mm; }
+}
+
 /* ============ 页脚 / Toast ============ */
 .site-footer { border-top: 1px solid var(--border); background: var(--card); }
 .footer-inner {
@@ -578,4 +674,8 @@ main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
   .city-banner { flex-direction: column; align-items: flex-start; }
   .form-actions .btn { width: 100%; }
   .apply-grid { grid-template-columns: 1fr; }
+  .resume-grid { grid-template-columns: 1fr; }
+  .preview-panel { position: static; }
+  .resume-row { grid-template-columns: 1fr; }
+  .resume-row .re-del { grid-column: auto; justify-self: stretch; }
 }

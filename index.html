@@ -31,6 +31,7 @@
       <button class="tab" data-page="timeline">秋招时间线</button>
       <button class="tab" data-page="interviews">面经笔试</button>
       <button class="tab" data-page="roadmap">学习路线</button>
+      <button class="tab" data-page="resume">简历工坊</button>
       <button class="tab" data-page="apply">投递工作台</button>
       <button class="tab" data-page="submit">我要投稿</button>
     </nav>
@@ -134,6 +135,76 @@
       <p>按方向拆解知识点,勾选你已掌握的内容(进度保存在你自己的浏览器里)。</p>
     </div>
     <div id="roadmapList" class="roadmap-list"></div>
+  </section>
+
+  <!-- ============ 简历工坊 ============ -->
+  <section id="page-resume" class="page">
+    <div class="page-head">
+      <h2>简历工坊</h2>
+      <p>在线制作简历 → 实时预览 → 打印/另存 PDF;一键体检打分;按岗位方向优化简历。</p>
+    </div>
+
+    <!-- 方向优化面板 -->
+    <div class="panel resume-opt-panel">
+      <h3 class="panel-title">🎯 按岗位方向优化</h3>
+      <div class="opt-row">
+        <select id="rdDir"></select>
+        <button class="btn" id="rdKeywords">一键补方向技能</button>
+        <button class="btn" id="rdSelfEval">填入自我评价模板</button>
+        <button class="btn" id="rdReorder">项目按匹配度重排</button>
+        <button class="btn btn-primary" id="rdReport">生成匹配报告</button>
+      </div>
+      <div class="opt-note" id="rdNote"></div>
+      <div id="rdReportBox"></div>
+    </div>
+
+    <div class="resume-grid">
+      <!-- 编辑区 -->
+      <div class="panel" id="editorPanel">
+        <h3 class="panel-title">✏️ 编辑简历 <span class="sub-note">输入自动保存(存于本机)</span></h3>
+
+        <h4 class="block-title">基本信息</h4>
+        <div class="form-grid">
+          <label>姓名<input id="rName" placeholder="张三"></label>
+          <label>电话<input id="rPhone" placeholder="13800000000"></label>
+          <label>邮箱<input id="rEmail" type="email" placeholder="you@example.com"></label>
+          <label>所在城市<input id="rCity" placeholder="成都"></label>
+          <label class="full">求职意向<input id="rIntent" placeholder="如:嵌入式软件工程师(2027 届校招)"></label>
+        </div>
+
+        <h4 class="block-title">教育经历</h4>
+        <div id="rEdu"></div>
+        <button class="btn" id="rEduAdd">+ 添加教育经历</button>
+
+        <h4 class="block-title">技能</h4>
+        <textarea id="rSkills" rows="2" placeholder="逗号/顿号分隔,如:C/C++, STM32, FreeRTOS, MQTT"></textarea>
+
+        <h4 class="block-title">项目经历 <span class="sub-note">尽量量化成果(规模/提升百分比/耗时)</span></h4>
+        <div id="rProjects"></div>
+        <button class="btn" id="rProjAdd">+ 添加项目</button>
+
+        <h4 class="block-title">实践经历</h4>
+        <div id="rExp"></div>
+        <button class="btn" id="rExpAdd">+ 添加实践</button>
+
+        <h4 class="block-title">证书奖项</h4>
+        <textarea id="rHonors" rows="2" placeholder="如:英语四级 / 蓝桥杯省二 / 三好学生…"></textarea>
+
+        <h4 class="block-title">自我评价</h4>
+        <textarea id="rSummary" rows="3" placeholder="技能 + 项目 + 性格亮点,60-120 字"></textarea>
+      </div>
+
+      <!-- 预览区 -->
+      <div class="panel preview-panel">
+        <div class="preview-bar">
+          <h3 class="panel-title">📄 预览</h3>
+          <button class="btn" id="rCheck">🔍 一键体检</button>
+          <button class="btn btn-primary" id="rPrint">🖨 打印 / 另存为 PDF</button>
+        </div>
+        <div id="rReport"></div>
+        <div class="resume-paper" id="rPaper"></div>
+      </div>
+    </div>
   </section>
 
   <!-- ============ 投递工作台 ============ -->
@@ -264,12 +335,14 @@
 <script src="data/timeline.js"></script>
 <script src="data/interviews.js"></script>
 <script src="data/roadmap.js"></script>
+<script src="data/resume.js"></script>
 <script src="js/app.js"></script>
 <script src="js/jobs.js"></script>
 <script src="js/chengdu.js"></script>
 <script src="js/timeline.js"></script>
 <script src="js/interviews.js"></script>
 <script src="js/roadmap.js"></script>
+<script src="js/resume.js"></script>
 <script src="js/apply.js"></script>
 <script src="js/submit.js"></script>
 </body>
