@@ -95,7 +95,7 @@ window.App = (function () {
   };
 
   /* ---------- 页面切换(hash 路由) ---------- */
-  const PAGES = ["jobs", "chengdu", "timeline", "interviews", "roadmap", "submit"];
+  const PAGES = ["jobs", "chengdu", "timeline", "interviews", "roadmap", "apply", "submit"];
   const showPage = (name) => {
     if (!PAGES.includes(name)) name = "jobs";
     document.querySelectorAll(".page").forEach(p =>

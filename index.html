@@ -31,6 +31,7 @@
       <button class="tab" data-page="timeline">秋招时间线</button>
       <button class="tab" data-page="interviews">面经笔试</button>
       <button class="tab" data-page="roadmap">学习路线</button>
+      <button class="tab" data-page="apply">投递工作台</button>
       <button class="tab" data-page="submit">我要投稿</button>
     </nav>
     <button class="icon-btn" id="themeToggle" title="切换深浅色" aria-label="切换深浅色主题">
@@ -135,6 +136,66 @@
     <div id="roadmapList" class="roadmap-list"></div>
   </section>
 
+  <!-- ============ 投递工作台 ============ -->
+  <section id="page-apply" class="page">
+    <div class="page-head">
+      <h2>投递工作台</h2>
+      <p>管理你的秋招投递进度:简历信息填一次,清单自动生成,一键打开投递页、生成投递摘要。</p>
+    </div>
+
+    <div class="apply-tip">💡 本板块完全离线可用(数据存你自己的浏览器)。<strong>自动投递脚本</strong>在仓库 <code>tools/auto-apply/</code> 目录,下载到本地运行可自动打开投递页并预填基本信息(见 README)。</div>
+
+    <div class="apply-grid">
+      <!-- 简历信息库 -->
+      <div class="panel" id="resumePanel">
+        <h3 class="panel-title">📄 简历信息库</h3>
+        <p class="panel-sub">填一次,生成投递摘要时自动使用。</p>
+        <div class="form-grid">
+          <label>姓名<input id="apName" placeholder="张三"></label>
+          <label>电话<input id="apPhone" placeholder="138xxxx"></label>
+          <label>邮箱<input id="apEmail" type="email" placeholder="you@example.com"></label>
+          <label>学校<input id="apSchool" placeholder="XX大学"></label>
+          <label>专业<input id="apMajor" placeholder="物联网工程"></label>
+          <label>毕业年份<input id="apGrad" placeholder="2027"></label>
+          <label class="full">技能标签<textarea id="apSkills" rows="2" placeholder="C/C++、STM32、FreeRTOS、MQTT、Linux…"></textarea></label>
+          <label class="full">自我评价 / 项目亮点<textarea id="apSummary" rows="3" placeholder="一句话介绍 + 最拿得出手的项目(120 字内)"></textarea></label>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" id="apSave">保存简历信息</button>
+          <button class="btn" id="apClear">清空</button>
+        </div>
+      </div>
+
+      <!-- 投递进度看板 -->
+      <div class="panel" id="progressPanel">
+        <h3 class="panel-title">📊 投递进度</h3>
+        <div class="stats" id="applyStats" style="margin-top:12px"></div>
+        <div class="progress" style="margin-top:14px"><div class="progress-bar" id="applyBar" style="width:0"></div></div>
+        <p class="panel-sub" id="applyBarText">还没有投递记录,加油!</p>
+        <div class="form-actions">
+          <button class="btn" id="apOpenAll">🚀 批量打开待投递</button>
+          <button class="btn" id="apReset">重置全部状态</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub-head">投递清单 <span class="sub-note">来自岗位看板数据,状态独立保存</span></h3>
+    <div class="filters">
+      <input type="search" id="apSearch" class="f-search" placeholder="搜索公司 / 岗位…">
+      <select id="apFilter">
+        <option value="all">全部状态</option>
+        <option value="todo">待投递</option>
+        <option value="applied">已投递</option>
+        <option value="written">笔试中</option>
+        <option value="interview">面试中</option>
+        <option value="offer">已拿 Offer</option>
+        <option value="dropped">已放弃</option>
+      </select>
+    </div>
+    <div class="list-meta" id="apCount"></div>
+    <div class="cards" id="applyList"></div>
+  </section>
+
   <!-- ============ 我要投稿 ============ -->
   <section id="page-submit" class="page">
     <div class="page-head">
@@ -209,6 +270,7 @@
 <script src="js/timeline.js"></script>
 <script src="js/interviews.js"></script>
 <script src="js/roadmap.js"></script>
+<script src="js/apply.js"></script>
 <script src="js/submit.js"></script>
 </body>
 </html>

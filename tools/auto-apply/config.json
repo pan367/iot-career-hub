@@ -1,0 +1,33 @@
+{
+  "daily_limit": 10,
+  "resume": {
+    "name": "张三",
+    "phone": "13800000000",
+    "email": "zhangsan@example.com",
+    "school": "XX大学",
+    "major": "物联网工程",
+    "grad_year": "2027"
+  },
+  "targets": [
+    {
+      "name": "小米校招(官网示例)",
+      "url": "https://campus.hr.xiaomi.com/",
+      "note": "官网投递:注册登录后搜索'嵌入式'岗位,进入申请页后脚本会尝试预填通用字段,提交请人工确认。"
+    },
+    {
+      "name": "海康威视校招(官网示例)",
+      "url": "https://campushr.hikvision.com/",
+      "note": "官网投递:最多 2 个志愿 × 2 部门,请按心仪程度排序后再提交。"
+    },
+    {
+      "name": "智联招聘(聚合平台示例)",
+      "url": "https://www.zhaopin.com/",
+      "note": "聚合平台:先在页面顶部登录账号,再搜索'嵌入式 成都'筛选应届生岗位;本脚本只做打开+预填,投递按钮请人工点击。"
+    },
+    {
+      "name": "牛客(聚合平台示例)",
+      "url": "https://www.nowcoder.com/",
+      "note": "牛客校招频道:登录后到'校招日程/职位'搜索目标公司;平台风控较严,切勿高频操作。"
+    }
+  ]
+}

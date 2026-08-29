@@ -331,6 +331,40 @@ main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
   position: relative;
 }
 .topic-card li::before { content: "·"; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
+
+/* 手风琴考点卡片 */
+.topic-card.accordion { padding: 0; overflow: hidden; margin-bottom: 12px; }
+.acc-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  padding: 13px 16px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: background .15s;
+}
+.acc-head:hover { background: var(--accent-soft); }
+.acc-icon { font-size: 17px; }
+.acc-title { flex: 1; }
+.acc-count { font-size: 11.5px; font-weight: 500; color: var(--text-3); background: var(--bg); padding: 2px 9px; border-radius: 999px; }
+.acc-arrow { transition: transform .2s; color: var(--text-3); font-size: 13px; }
+.topic-card.accordion.open .acc-arrow { transform: rotate(180deg); }
+.acc-body { display: none; padding: 4px 16px 16px; }
+.topic-card.accordion.open .acc-body { display: block; animation: fadeIn .2s ease; }
+.kp-item { border-top: 1px dashed var(--border); padding: 11px 0 4px; }
+.kp-item:first-child { border-top: none; padding-top: 8px; }
+.kp-name { font-size: 13.5px; font-weight: 700; color: var(--accent-dark); margin-bottom: 3px; }
+[data-theme="dark"] .kp-name { color: var(--accent); }
+.kp-desc { font-size: 12.8px; color: var(--text-2); line-height: 1.75; }
+.kp-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 7px; }
+.kp-links .btn { font-size: 12px; padding: 4px 11px; }
+
 .interview-list { display: flex; flex-direction: column; gap: 12px; }
 .interview-card {
   background: var(--card);
@@ -467,6 +501,36 @@ main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
 .issue-link { font-size: 12.5px; }
 .issue-loading { font-size: 13.5px; color: var(--text-3); }
 
+/* ============ 投递工作台 ============ */
+.apply-tip {
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 11px 15px;
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 16px;
+}
+.apply-tip code { background: var(--bg); padding: 1px 6px; border-radius: 5px; font-size: 12px; }
+.apply-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+}
+.panel-title { font-size: 15px; margin-bottom: 2px; }
+.panel-sub { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+.apply-ops { display: flex; gap: 5px; flex-wrap: wrap; }
+.st-btn { font-size: 11.5px; padding: 3px 9px; border-radius: 999px; }
+.st-btn.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+
 /* ============ 页脚 / Toast ============ */
 .site-footer { border-top: 1px solid var(--border); background: var(--card); }
 .footer-inner {
@@ -513,4 +577,5 @@ main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
   .form-grid { grid-template-columns: 1fr; }
   .city-banner { flex-direction: column; align-items: flex-start; }
   .form-actions .btn { width: 100%; }
+  .apply-grid { grid-template-columns: 1fr; }
 }
