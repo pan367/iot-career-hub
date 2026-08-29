@@ -209,6 +209,13 @@
   render();
   App.updateStats(DATA);
 
+  /* 动态模式:云端数据到达后重渲染看板与统计 */
+  window.addEventListener("iot:jobs-dynamic", () => {
+    buildOptions();
+    render();
+    App.updateStats(DATA);
+  });
+
   /* 供成都专场复用同一卡片渲染与交互 */
   App.jobCard = jobCard;
 })();

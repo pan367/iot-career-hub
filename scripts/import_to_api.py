@@ -33,7 +33,11 @@ def post(base, key, job):
     req = urllib.request.Request(
         base.rstrip("/") + "/api/jobs",
         data=json.dumps(job).encode("utf-8"),
-        headers={"Content-Type": "application/json", "Authorization": "Bearer " + key},
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + key,
+            "User-Agent": "Mozilla/5.0 (iot-career-hub-import)",  # 避免被 Cloudflare 风控拦截
+        },
         method="POST",
     )
     try:
