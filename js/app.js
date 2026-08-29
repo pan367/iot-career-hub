@@ -94,19 +94,20 @@ window.App = (function () {
   };
 
   /* ---------- 页面切换(hash 路由) ---------- */
-  const PAGES = ["home", "jobs", "chengdu", "degree", "timeline", "interviews", "roadmap", "resume", "apply", "submit"];
+  const PAGES = ["home", "jobs", "chengdu", "degree", "timeline", "interviews", "roadmap", "resume", "apply", "submit", "feedback"];
   const showPage = (name) => {
     if (!PAGES.includes(name)) name = "home";
     document.querySelectorAll(".page").forEach(p =>
       p.classList.toggle("active", p.id === "page-" + name));
     document.querySelectorAll("#navTabs .tab").forEach(t =>
       t.classList.toggle("active", t.dataset.page === name));
-    /* 首页为全屏复刻 hero:隐藏原导航与声明条,避免重叠 */
+    /* 首页为全屏复刻 hero:隐藏原导航与声明条,并让 main 容器全宽无内边距 */
     const isHome = name === "home";
     const header = document.querySelector(".site-header");
     const disc = document.querySelector(".disclaimer");
     if (header) header.style.display = isHome ? "none" : "";
     if (disc) disc.style.display = isHome ? "none" : "";
+    document.body.classList.toggle("home-full", isHome);
     window.scrollTo({ top: 0 });
   };
   const initRouter = () => {

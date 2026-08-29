@@ -144,6 +144,9 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ============ 主区域 ============ */
 main { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
+/* 首页激活时 main 全宽无内边距,复刻 hero 真正铺满整个视口 */
+body.home-full main { max-width: none; padding: 0; }
+body.home-full #page-home { width: 100%; }
 .page { display: none; }
 .page.active { display: block; animation: fadeIn .25s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }

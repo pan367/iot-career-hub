@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20260831">
+<link rel="stylesheet" href="css/style.css?v=20260901">
 </head>
 <body>
 
@@ -43,6 +43,7 @@
       <button class="tab" data-page="resume">简历工坊</button>
       <button class="tab" data-page="apply">投递工作台</button>
       <button class="tab" data-page="submit">我要投稿</button>
+      <button class="tab" data-page="feedback">反馈建议</button>
     </nav>
     <button class="icon-btn" id="themeToggle" title="切换深浅色" aria-label="切换深浅色主题">
       <span id="themeIcon">🌙</span>
@@ -490,6 +491,45 @@
     <div id="issueList" class="issue-list"><p class="issue-loading">加载中…</p></div>
   </section>
 
+  <!-- ============ 反馈建议 ============ -->
+  <section id="page-feedback" class="page">
+    <div class="page-head">
+      <h2>反馈与建议</h2>
+      <p>发现岗位信息有误?想要新功能?填表提交,维护者会在 GitHub 收到并处理。你的每一条反馈都在帮大家。</p>
+    </div>
+
+    <div class="flow-steps">
+      <span class="step"><b>1</b> 填写反馈内容</span>
+      <span class="step"><b>2</b> 在 GitHub 确认提交(需登录)</span>
+      <span class="step"><b>3</b> 维护者处理并回复</span>
+    </div>
+
+    <form id="fbForm" class="sub-form" novalidate>
+      <div class="form-grid">
+        <label>反馈类型 <em>*</em>
+          <select id="fbType">
+            <option>功能建议</option>
+            <option>信息纠错</option>
+            <option>Bug 反馈</option>
+            <option>其他</option>
+          </select>
+        </label>
+        <label>联系方式<input id="fbContact" placeholder="微信 / 邮箱(选填,便于回复)"></label>
+        <label class="full">反馈内容 <em>*</em>
+          <textarea id="fbContent" rows="4" required placeholder="请详细描述你的建议或问题,尽量具体(涉及岗位请附公司名/链接)"></textarea>
+        </label>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">提交反馈(跳转 GitHub)</button>
+        <button type="button" class="btn" id="fbCopy">复制反馈内容(发给维护者)</button>
+      </div>
+      <p class="form-hint">没有 GitHub 账号?点「复制反馈内容」发给维护者微信。所有反馈默认公开在仓库 Issues,敏感信息请勿填写。</p>
+    </form>
+
+    <h3 class="sub-head">最新反馈 <span class="sub-note">实时拉取自仓库 GitHub Issues(标题以【反馈】开头)</span></h3>
+    <div id="fbList" class="issue-list"><p class="issue-loading">加载中…</p></div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
@@ -501,21 +541,22 @@
 
 <div id="toast" role="status" aria-live="polite"></div>
 
-<script src="data/jobs.js?v=20260831"></script>
-<script src="data/timeline.js?v=20260831"></script>
-<script src="data/interviews.js?v=20260831"></script>
-<script src="data/roadmap.js?v=20260831"></script>
-<script src="data/resume.js?v=20260831"></script>
-<script src="js/app.js?v=20260831"></script>
-<script src="js/home.js?v=20260831"></script>
-<script src="js/jobs.js?v=20260831"></script>
-<script src="js/chengdu.js?v=20260831"></script>
-<script src="js/degree.js?v=20260831"></script>
-<script src="js/timeline.js?v=20260831"></script>
-<script src="js/interviews.js?v=20260831"></script>
-<script src="js/roadmap.js?v=20260831"></script>
-<script src="js/resume.js?v=20260831"></script>
-<script src="js/apply.js?v=20260831"></script>
-<script src="js/submit.js?v=20260831"></script>
+<script src="data/jobs.js?v=20260901"></script>
+<script src="data/timeline.js?v=20260901"></script>
+<script src="data/interviews.js?v=20260901"></script>
+<script src="data/roadmap.js?v=20260901"></script>
+<script src="data/resume.js?v=20260901"></script>
+<script src="js/app.js?v=20260901"></script>
+<script src="js/home.js?v=20260901"></script>
+<script src="js/jobs.js?v=20260901"></script>
+<script src="js/chengdu.js?v=20260901"></script>
+<script src="js/degree.js?v=20260901"></script>
+<script src="js/timeline.js?v=20260901"></script>
+<script src="js/interviews.js?v=20260901"></script>
+<script src="js/roadmap.js?v=20260901"></script>
+<script src="js/resume.js?v=20260901"></script>
+<script src="js/apply.js?v=20260901"></script>
+<script src="js/submit.js?v=20260901"></script>
+<script src="js/feedback.js?v=20260901"></script>
 </body>
 </html>
