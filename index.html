@@ -55,8 +55,11 @@
 
   <!-- ============ 首页(复刻 LŪMEN // ÍNDEX 全屏 hero) ============ -->
   <section id="page-home" class="page home-hero">
-    <!-- 背景视频:自托管轻量版(720p/228KB,同源加载快,移动端友好) -->
-    <video class="home-video anim-fade-in" src="assets/jellyfish.mp4?v=20260906" autoplay muted loop playsinline preload="auto"></video>
+    <!-- 背景视频:电脑端(≥769px)用原版最清晰(CloudFront 7.4MB),手机端用自托管轻量高清版(857KB) -->
+    <video class="home-video anim-fade-in" autoplay muted loop playsinline preload="auto">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260813_115057_94c3699b-0fd1-4124-bcf3-3626bb8c1f77.mp4" media="(min-width: 769px)">
+      <source src="assets/jellyfish.mp4?v=20260907">
+    </video>
 
     <div class="home-layer">
       <!-- 顶部导航 -->
@@ -566,25 +569,25 @@
 
 <div id="toast" role="status" aria-live="polite"></div>
 
-<script src="data/jobs.js?v=20260906"></script>
-<script src="data/company-types.js?v=20260906"></script>
-<script src="data/updated.js?v=20260906"></script>
-<script src="data/timeline.js?v=20260906"></script>
-<script src="data/interviews.js?v=20260906"></script>
-<script src="data/roadmap.js?v=20260906"></script>
-<script src="data/resume.js?v=20260906"></script>
-<script src="js/app.js?v=20260906"></script>
-<script src="js/home.js?v=20260906"></script>
-<script src="js/jobs.js?v=20260906"></script>
-<script src="js/chengdu.js?v=20260906"></script>
-<script src="js/degree.js?v=20260906"></script>
-<script src="js/timeline.js?v=20260906"></script>
-<script src="js/interviews.js?v=20260906"></script>
-<script src="js/roadmap.js?v=20260906"></script>
-<script src="js/resume.js?v=20260906"></script>
-<script src="js/apply.js?v=20260906"></script>
-<script src="js/submit.js?v=20260906"></script>
-<script src="js/feedback.js?v=20260906"></script>
+<script src="data/jobs.js?v=20260907"></script>
+<script src="data/company-types.js?v=20260907"></script>
+<script src="data/updated.js?v=20260907"></script>
+<script src="data/timeline.js?v=20260907"></script>
+<script src="data/interviews.js?v=20260907"></script>
+<script src="data/roadmap.js?v=20260907"></script>
+<script src="data/resume.js?v=20260907"></script>
+<script src="js/app.js?v=20260907"></script>
+<script src="js/home.js?v=20260907"></script>
+<script src="js/jobs.js?v=20260907"></script>
+<script src="js/chengdu.js?v=20260907"></script>
+<script src="js/degree.js?v=20260907"></script>
+<script src="js/timeline.js?v=20260907"></script>
+<script src="js/interviews.js?v=20260907"></script>
+<script src="js/roadmap.js?v=20260907"></script>
+<script src="js/resume.js?v=20260907"></script>
+<script src="js/apply.js?v=20260907"></script>
+<script src="js/submit.js?v=20260907"></script>
+<script src="js/feedback.js?v=20260907"></script>
 <!-- 简历解析库(CDN) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
