@@ -112,3 +112,14 @@ GitHub Pages 为纯静态托管(无后端/无定时任务),**无法直接做成�
 
 ### 6. 更新时间真实性
 "最后自动更新"时间由 GitHub Actions 每次运行时用服务器真实时间(UTC→北京时间)写入,非人工手写;本地预览无 `updated.js` 时回退显示数据最新核实日期。可在仓库 Actions 页查看每次运行日志核对。
+
+## 真正动态化(Cloudflare Workers 后端,已就绪)
+
+`serverless/` 目录包含**完整可用的动态后端**(Cloudflare Worker 单文件 + KV 数据库 + 定时任务):
+
+- 岗位数据存 KV,通过 REST API 实时读写(维护者可在线增删改,无需 git)
+- 定时任务每天 05:00/12:00 更新真实时间戳并校验数据
+- 访问统计、投稿/反馈在线存储
+- 前端双模式:配置 `SITE_CONFIG.apiUrl` 后岗位从 API 实时拉取;未配置/API 故障时自动回退静态数据,网站永不空白
+
+部署约 5 分钟(免费,无需信用卡):注册 Cloudflare → `npm i -g wrangler` → `wrangler login` → 按 `serverless/README.md` 步骤创建 KV、配置密钥、`wrangler deploy`,然后把 API 地址填到 index.html 的 `window.SITE_CONFIG.apiUrl` 并推送即可。
