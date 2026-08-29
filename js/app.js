@@ -94,13 +94,19 @@ window.App = (function () {
   };
 
   /* ---------- 页面切换(hash 路由) ---------- */
-  const PAGES = ["jobs", "chengdu", "timeline", "interviews", "roadmap", "resume", "apply", "submit"];
+  const PAGES = ["home", "jobs", "chengdu", "timeline", "interviews", "roadmap", "resume", "apply", "submit"];
   const showPage = (name) => {
-    if (!PAGES.includes(name)) name = "jobs";
+    if (!PAGES.includes(name)) name = "home";
     document.querySelectorAll(".page").forEach(p =>
       p.classList.toggle("active", p.id === "page-" + name));
     document.querySelectorAll("#navTabs .tab").forEach(t =>
       t.classList.toggle("active", t.dataset.page === name));
+    /* 首页为全屏复刻 hero:隐藏原导航与声明条,避免重叠 */
+    const isHome = name === "home";
+    const header = document.querySelector(".site-header");
+    const disc = document.querySelector(".disclaimer");
+    if (header) header.style.display = isHome ? "none" : "";
+    if (disc) disc.style.display = isHome ? "none" : "";
     window.scrollTo({ top: 0 });
   };
   const initRouter = () => {

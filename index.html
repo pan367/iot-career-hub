@@ -50,6 +50,132 @@
 
 <main>
 
+  <!-- ============ 首页(复刻 LŪMEN // ÍNDEX 全屏 hero) ============ -->
+  <section id="page-home" class="page home-hero">
+    <!-- 背景视频(提示词指定 URL) -->
+    <video class="home-video anim-fade-in" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260813_115057_94c3699b-0fd1-4124-bcf3-3626bb8c1f77.mp4" autoplay muted loop playsinline></video>
+
+    <div class="home-layer">
+      <!-- 顶部导航 -->
+      <nav class="home-nav">
+        <div class="home-nav-left">
+          <span class="home-logo anim-fade-up" style="animation-delay:200ms">LŪMEN // ÍNDEX</span>
+          <div class="home-links">
+            <a class="home-link anim-fade-up" style="animation-delay:350ms" href="#/jobs"><span class="hl-num">01.</span><span class="hl-label">ECOSYSTEM</span></a>
+            <a class="home-link anim-fade-up" style="animation-delay:450ms" href="#/timeline"><span class="hl-num">02.</span><span class="hl-label">LIQUIDITY_POOLS</span></a>
+            <a class="home-link anim-fade-up" style="animation-delay:550ms" href="#/interviews"><span class="hl-num">03.</span><span class="hl-label">LUMEN_INDEX</span></a>
+            <a class="home-link anim-fade-up" style="animation-delay:650ms" href="#/roadmap"><span class="hl-num">04.</span><span class="hl-label">GOVERNANCE</span></a>
+          </div>
+        </div>
+        <div class="home-wallet anim-slide-right" style="animation-delay:600ms">
+          <svg class="hw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H5"/><path d="M16 13h.01"/></svg>
+          <span class="hw-addr">0x71...f4e2</span>
+          <span class="hw-conn">[ CONNECTED ]</span>
+          <span class="hw-status">STATUS:</span>
+          <span class="hw-chip">PRIME_MEMBER</span>
+        </div>
+        <button class="home-hamburger anim-fade-in" style="animation-delay:400ms" id="homeHamburger" aria-label="Toggle menu">
+          <span class="hh-ico" id="hhMenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg></span>
+          <span class="hh-ico" id="hhClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+        </button>
+      </nav>
+
+      <!-- 移动菜单 -->
+      <div class="home-menu" id="homeMenu">
+        <div class="hm-backdrop" id="hmBackdrop"></div>
+        <div class="hm-panel">
+          <button class="hm-close" id="hmClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <div class="hm-list" id="hmList">
+            <a class="hm-item" href="#/jobs" data-d="0"><span class="hmi-num">01.</span><span class="hmi-label">ECOSYSTEM</span></a>
+            <a class="hm-item" href="#/timeline" data-d="1"><span class="hmi-num">02.</span><span class="hmi-label">LIQUIDITY_POOLS</span></a>
+            <a class="hm-item" href="#/interviews" data-d="2"><span class="hmi-num">03.</span><span class="hmi-label">LUMEN_INDEX</span></a>
+            <a class="hm-item" href="#/roadmap" data-d="3"><span class="hmi-num">04.</span><span class="hmi-label">GOVERNANCE</span></a>
+            <a class="hm-item" href="#/resume" data-d="4"><span class="hmi-num">05.</span><span class="hmi-label">RESUME_STUDIO</span></a>
+            <a class="hm-item" href="#/apply" data-d="5"><span class="hmi-num">06.</span><span class="hmi-label">APPLY_DESK</span></a>
+            <a class="hm-item" href="#/submit" data-d="6"><span class="hmi-num">07.</span><span class="hmi-label">SUBMIT_ISSUE</span></a>
+          </div>
+          <div class="hm-wallet" id="hmWallet">
+            <div class="hmw-row1">
+              <svg class="hw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H5"/><path d="M16 13h.01"/></svg>
+              <span class="hw-addr">0x71...f4e2</span>
+              <span class="hw-conn">[ CONNECTED ]</span>
+            </div>
+            <div class="hmw-row2">
+              <span class="hw-status">STATUS:</span>
+              <span class="hw-chip">PRIME_MEMBER</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 主标题 -->
+      <h1 class="home-h1 anim-fade-up" style="animation-delay:400ms">Liquid Assets.<br>Luminous Returns.</h1>
+
+      <!-- 网格线 + 加号 -->
+      <div class="home-grid" aria-hidden="true">
+        <span class="hg-v" style="left:12.6%;animation-delay:600ms"></span>
+        <span class="hg-v" style="left:37.5%;animation-delay:700ms"></span>
+        <span class="hg-v" style="left:61.9%;animation-delay:800ms"></span>
+        <span class="hg-v" style="left:86.2%;animation-delay:900ms"></span>
+        <span class="hg-h" style="top:32.7%;animation-delay:800ms"></span>
+        <span class="hg-h" style="top:71.4%;animation-delay:950ms"></span>
+        <!-- 8 个交叉点加号 -->
+        <span class="hg-plus" style="top:32.7%;left:12.6%;animation-delay:1000ms"></span>
+        <span class="hg-plus" style="top:32.7%;left:37.5%;animation-delay:1080ms"></span>
+        <span class="hg-plus" style="top:32.7%;left:61.9%;animation-delay:1160ms"></span>
+        <span class="hg-plus" style="top:32.7%;left:86.2%;animation-delay:1240ms"></span>
+        <span class="hg-plus" style="top:71.4%;left:12.6%;animation-delay:1320ms"></span>
+        <span class="hg-plus" style="top:71.4%;left:37.5%;animation-delay:1400ms"></span>
+        <span class="hg-plus" style="top:71.4%;left:61.9%;animation-delay:1480ms"></span>
+        <span class="hg-plus" style="top:71.4%;left:86.2%;animation-delay:1560ms"></span>
+      </div>
+
+      <!-- 中央节点图(≥768px 显示) -->
+      <div class="home-nodes" aria-hidden="true">
+        <span class="hn-square" style="top:27%;left:60%;animation-delay:1500ms"></span>
+        <span class="hn-square" style="top:58%;left:32%;animation-delay:1800ms"></span>
+        <span class="hn-square" style="top:63%;left:50%;animation-delay:2100ms"></span>
+
+        <div class="hn-label anim-slide-left" style="top:11%;left:26%;animation-delay:1100ms;max-width:160px">
+          <span class="hnl-title">[ CORE_ENTITY ]</span>
+          <p class="hnl-desc">Neural node processing real-time data streams.</p>
+        </div>
+        <div class="hn-label anim-slide-left" style="top:76%;left:3%;animation-delay:1400ms;max-width:160px">
+          <span class="hnl-title">[ LUMINOUS_INSIGHT ]</span>
+          <p class="hnl-desc">Deep-learning engine synthesizing raw inputs.</p>
+        </div>
+        <div class="hn-label anim-slide-right" style="top:50%;left:78%;animation-delay:1700ms;max-width:180px">
+          <span class="hnl-title">[ CONNECTIVITY ]</span>
+          <p class="hnl-desc">Latency-free transmission across distributed networks.</p>
+        </div>
+
+        <!-- 6 条连接线 -->
+        <svg class="hn-line anim-fade-in" style="animation-delay:1200ms"><line x1="38%" y1="14%" x2="52%" y2="14%"/></svg>
+        <svg class="hn-line anim-fade-in" style="animation-delay:1400ms"><line x1="52%" y1="14%" x2="60%" y2="27%"/></svg>
+        <svg class="hn-line anim-fade-in" style="animation-delay:1500ms"><line x1="32%" y1="58%" x2="20%" y2="74%"/></svg>
+        <svg class="hn-line anim-fade-in" style="animation-delay:1700ms"><line x1="20%" y1="74%" x2="6%" y2="74%"/></svg>
+        <svg class="hn-line anim-fade-in" style="animation-delay:1800ms"><line x1="78%" y1="53%" x2="63%" y2="53%"/></svg>
+        <svg class="hn-line anim-fade-in" style="animation-delay:2000ms"><line x1="63%" y1="53%" x2="50%" y2="63%"/></svg>
+      </div>
+
+      <!-- 底部行 -->
+      <div class="home-bottom">
+        <a class="home-cta anim-fade-up" style="animation-delay:900ms" href="#/jobs">
+          <span class="hc-star">&#10022;</span>
+          <span class="hc-label">Explore Private Banking</span>
+        </a>
+        <div class="home-card anim-slide-right" style="animation-delay:1100ms">
+          <span class="hcard-badge">NOT A BANK — AN ECOSYSTEM</span>
+          <div class="hcard-body">
+            <svg class="hcard-border" viewBox="0 0 280 168" preserveAspectRatio="none"><polygon points="0.5,0.5 279.5,0.5 279.5,167.5 30,167.5 0.5,137.5"/></svg>
+            <p class="hcard-text">Maps the complexity of modern finance with a partner that brings clarity and organic growth to your portfolio.</p>
+            <a class="hcard-link" href="https://github.com/pan367/iot-career-hub" target="_blank" rel="noopener">VIEW_TRANSPARENCY_REPORT</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ 岗位看板 ============ -->
   <section id="page-jobs" class="page active">
     <div class="hero">
@@ -345,6 +471,7 @@
 <script src="data/roadmap.js"></script>
 <script src="data/resume.js"></script>
 <script src="js/app.js"></script>
+<script src="js/home.js"></script>
 <script src="js/jobs.js"></script>
 <script src="js/chengdu.js"></script>
 <script src="js/timeline.js"></script>

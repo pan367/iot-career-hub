@@ -773,3 +773,302 @@ main { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; paddin
   .resume-row { grid-template-columns: 1fr; }
   .resume-row .re-del { grid-column: auto; justify-self: stretch; }
 }
+
+/* ============ 首页:复刻 LŪMEN // ÍNDEX 全屏 hero ============ */
+.home-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
+.home-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.home-layer { position: relative; z-index: 10; width: 100%; height: 100%; }
+
+/* ---- 顶部导航 ---- */
+.home-nav {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 20px 20px;
+  z-index: 40;
+}
+@media (min-width: 768px) { .home-nav { padding: 27px 35px; } }
+.home-nav-left { display: flex; align-items: center; gap: 40px; }
+.home-logo {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  color: #fff;
+  white-space: nowrap;
+  letter-spacing: .3px;
+}
+@media (min-width: 768px) { .home-logo { font-size: 21px; line-height: 21px; } }
+.home-links { display: none; align-items: center; gap: 40px; }
+@media (min-width: 1024px) { .home-links { display: flex; } }
+.home-link { display: flex; align-items: center; gap: 3px; text-decoration: none; }
+.hl-num { font-family: "Manrope", sans-serif; font-size: 13px; line-height: 15.6px; color: rgba(175, 221, 255, .8); }
+.hl-label { font-family: "Manrope", sans-serif; font-size: 13px; line-height: 15.6px; color: #fff; cursor: pointer; transition: color .2s; }
+.home-link:hover .hl-label { color: #AFDDFF; }
+.home-link:hover { text-decoration: none; }
+
+/* ---- 钱包条 ---- */
+.home-wallet {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+@media (min-width: 1024px) { .home-wallet { display: flex; } }
+.hw-icon { width: 15px; height: 15px; stroke: #fff; flex-shrink: 0; }
+.hw-addr { font-family: "Manrope", sans-serif; font-size: 13px; line-height: 15.6px; color: #fff; }
+.hw-conn { font-family: "Manrope", sans-serif; font-size: 13px; line-height: 15.6px; color: #AFDDFF; }
+.hw-status { font-family: "Manrope", sans-serif; font-size: 13px; line-height: 15.6px; color: #fff; margin-left: 20px; }
+.hw-chip {
+  font-family: "Manrope", sans-serif;
+  font-size: 13px; line-height: 15.6px;
+  background: #AFDDFF; color: #000;
+  border-radius: 3px;
+  padding: 2px 5px;
+}
+
+/* ---- 汉堡按钮 ---- */
+.home-hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  width: 40px; height: 40px;
+  background: transparent;
+  border: none;
+  position: relative;
+}
+@media (min-width: 1024px) { .home-hamburger { display: none; } }
+.hh-ico {
+  position: absolute;
+  width: 22px; height: 22px;
+  color: #fff;
+  transition: all .3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.hh-ico svg { width: 22px; height: 22px; display: block; }
+#hhMenu { opacity: 1; transform: rotate(0) scale(1); }
+#hhClose { opacity: 0; transform: rotate(-90deg) scale(.5); }
+.home-hamburger.open #hhMenu { opacity: 0; transform: rotate(90deg) scale(.5); }
+.home-hamburger.open #hhClose { opacity: 1; transform: rotate(0) scale(1); }
+
+/* ---- 移动菜单 ---- */
+.home-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  transition: all .5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+@media (min-width: 1024px) { .home-menu { display: none; } }
+.hm-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, .9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: opacity .5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.hm-panel {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 96px 20px 40px;
+  transition: all .5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.home-menu.closed { visibility: hidden; }
+.home-menu.closed .hm-backdrop { opacity: 0; }
+.home-menu.closed .hm-panel { opacity: 0; transform: translateY(-16px); }
+.home-menu.open .hm-backdrop { opacity: 1; }
+.home-menu.open .hm-panel { opacity: 1; transform: translateY(0); }
+.hm-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: none; color: #fff;
+}
+.hm-close svg { width: 22px; height: 22px; }
+.hm-list { display: flex; flex-direction: column; gap: 32px; }
+.hm-item {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+  transition: all .5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.hm-item:hover { text-decoration: none; }
+.hmi-num { font-family: "Manrope", sans-serif; font-size: 14px; line-height: 1; color: rgba(175, 221, 255, .8); }
+.hmi-label { font-family: "Manrope", sans-serif; font-size: 28px; line-height: 1.2; letter-spacing: -.5px; color: #fff; }
+.hm-wallet {
+  margin-top: auto;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  transition: all .5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.hmw-row1 { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.hmw-row2 { display: flex; align-items: center; gap: 8px; }
+.hm-item, .hm-wallet { opacity: 0; transform: translateX(-24px); }
+.home-menu.open .hm-item, .home-menu.open .hm-wallet { opacity: 1; transform: translateX(0); }
+.hm-wallet { transform: translateY(16px); }
+.home-menu.open .hm-wallet { transform: translateY(0); transition-delay: 450ms; }
+.home-menu.closed .hm-item { transition-delay: 0ms; }
+.home-menu.closed .hm-wallet { transition-delay: 0ms; }
+
+/* ---- 主标题 ---- */
+.home-h1 {
+  position: absolute;
+  top: 140px;
+  left: 20px;
+  max-width: 300px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1em;
+  color: #fff;
+}
+@media (min-width: 640px) {
+  .home-h1 { top: 160px; max-width: 420px; font-size: 48px; }
+}
+@media (min-width: 768px) {
+  .home-h1 { top: 178px; left: 35px; max-width: 554px; font-size: 68px; }
+}
+
+/* ---- 网格线 + 加号 ---- */
+.home-grid { position: absolute; inset: 0; pointer-events: none; }
+.hg-v {
+  position: absolute; top: 0; height: 100%; width: 1px;
+  background: rgba(255, 255, 255, .04);
+  opacity: 0; transform-origin: top;
+  animation: gridReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hg-h {
+  position: absolute; left: 0; width: 100%; height: 1px;
+  background: rgba(255, 255, 255, .04);
+  opacity: 0; transform-origin: left;
+  animation: gridRevealH 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hg-plus {
+  position: absolute;
+  width: 10px; height: 10px;
+  opacity: 0;
+  animation: scaleIn .7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hg-plus::before, .hg-plus::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, .7);
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+}
+.hg-plus::before { width: 10px; height: 1px; }
+.hg-plus::after { width: 1px; height: 10px; }
+@keyframes gridReveal  { from { opacity: 0; transform: scaleY(0); } to { opacity: 1; transform: scaleY(1); } }
+@keyframes gridRevealH { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: scaleX(1); } }
+
+/* ---- 中央节点图(≥768px) ---- */
+.home-nodes { position: absolute; inset: 0; pointer-events: none; display: none; }
+@media (min-width: 768px) { .home-nodes { display: block; } }
+.hn-square {
+  position: absolute;
+  width: 80px; height: 80px;
+  border: 1px solid rgba(255, 255, 255, .8);
+  opacity: 0;
+  animation: scaleIn .7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@media (min-width: 1024px) { .hn-square { width: 100px; height: 100px; } }
+.hn-label { position: absolute; }
+.hnl-title { font-family: "Manrope", sans-serif; font-size: 13px; line-height: 15.6px; color: #fff; white-space: nowrap; }
+.hnl-desc { font-family: "Manrope", sans-serif; font-size: 11px; line-height: 14px; color: rgba(255, 255, 255, .5); margin-top: 4px; }
+.hn-line {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.hn-line line { stroke: rgba(255, 255, 255, .25); stroke-width: 1; }
+
+/* ---- 底部行 ---- */
+.home-bottom {
+  position: absolute;
+  bottom: 20px; left: 20px; right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+@media (min-width: 768px) {
+  .home-bottom {
+    bottom: 35px; left: 35px; right: 35px;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 0;
+  }
+}
+.home-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #AFDDFF;
+  padding: 10px 16px;
+  text-decoration: none;
+  transition: background .2s;
+}
+.home-cta:hover { background: #c8e8ff; text-decoration: none; }
+@media (min-width: 768px) { .home-cta { padding: 12px 20px; } }
+.hc-star { color: #000; font-size: 16px; line-height: 1; }
+.hc-label {
+  font-family: "Manrope", sans-serif;
+  color: #000;
+  font-size: 12px;
+  line-height: 15.6px;
+  text-transform: uppercase;
+  letter-spacing: .025em;
+  white-space: nowrap;
+}
+@media (min-width: 768px) { .hc-label { font-size: 13px; } }
+
+.home-card { position: relative; max-width: 280px; display: none; }
+@media (min-width: 640px) { .home-card { display: block; } }
+.hcard-badge {
+  display: inline-block;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px; line-height: 15.6px;
+  background: #AFDDFF; color: #000;
+  padding: 2px 6px;
+  margin-bottom: 10px;
+}
+.hcard-body { position: relative; padding: 20px; }
+.hcard-border {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.hcard-border polygon { fill: none; stroke: #AFDDFF; stroke-width: 1; }
+.hcard-text {
+  position: relative;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px; line-height: 18px;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.hcard-link {
+  position: relative;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px; line-height: 15.6px;
+  color: #AFDDFF;
+  cursor: pointer;
+}
+.hcard-link:hover { text-decoration: underline; }
