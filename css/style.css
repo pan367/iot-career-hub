@@ -367,6 +367,106 @@ main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
 .road-item input:checked + span { color: var(--text-3); text-decoration: line-through; }
 .road-res { margin: 2px 0 0 23px; font-size: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
 
+/* ============ 成都专场 ============ */
+.city-banner {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 13.5px;
+  color: var(--text-2);
+}
+.city-banner strong { color: var(--text); }
+.city-stats { display: flex; gap: 10px; flex-shrink: 0; }
+.city-stats .stat-card { min-width: 96px; padding: 8px 14px; text-align: center; }
+
+/* ============ 投稿板块 ============ */
+.flow-steps {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.step {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--text-2);
+  box-shadow: var(--shadow);
+}
+.step b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  margin-right: 6px;
+}
+.sub-form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 16px;
+}
+.form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--text-2);
+  font-weight: 600;
+}
+.form-grid label.full { grid-column: 1 / -1; }
+.form-grid em { color: var(--danger); font-style: normal; }
+.form-grid input, .form-grid select, .form-grid textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 11px;
+  font-size: 13.5px;
+  color: var(--text);
+  font-family: inherit;
+  font-weight: 400;
+  outline: none;
+  resize: vertical;
+}
+.form-grid input:focus, .form-grid select:focus, .form-grid textarea:focus { border-color: var(--accent); }
+.form-actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+.form-actions .btn { font-size: 14px; padding: 9px 18px; }
+.form-hint { font-size: 12.5px; color: var(--text-3); margin-top: 12px; }
+.issue-list { display: flex; flex-direction: column; gap: 10px; }
+.issue-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 13px 16px;
+  box-shadow: var(--shadow);
+}
+.issue-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.issue-title { font-weight: 600; font-size: 14px; }
+.issue-meta { font-size: 12px; color: var(--text-3); margin: 4px 0 6px; }
+.issue-link { font-size: 12.5px; }
+.issue-loading { font-size: 13.5px; color: var(--text-3); }
+
 /* ============ 页脚 / Toast ============ */
 .site-footer { border-top: 1px solid var(--border); background: var(--card); }
 .footer-inner {
@@ -410,4 +510,7 @@ main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
   .tab { padding: 6px 10px; font-size: 13px; }
   main { padding: 16px 14px 50px; }
   .footer-inner { justify-content: center; text-align: center; }
+  .form-grid { grid-template-columns: 1fr; }
+  .city-banner { flex-direction: column; align-items: flex-start; }
+  .form-actions .btn { width: 100%; }
 }

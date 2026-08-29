@@ -27,9 +27,11 @@
     </div>
     <nav class="tabs" id="navTabs" aria-label="主导航">
       <button class="tab active" data-page="jobs">岗位看板</button>
+      <button class="tab" data-page="chengdu">成都专场</button>
       <button class="tab" data-page="timeline">秋招时间线</button>
       <button class="tab" data-page="interviews">面经笔试</button>
       <button class="tab" data-page="roadmap">学习路线</button>
+      <button class="tab" data-page="submit">我要投稿</button>
     </nav>
     <button class="icon-btn" id="themeToggle" title="切换深浅色" aria-label="切换深浅色主题">
       <span id="themeIcon">🌙</span>
@@ -72,6 +74,37 @@
     </div>
   </section>
 
+  <!-- ============ 成都专场 ============ -->
+  <section id="page-chengdu" class="page">
+    <div class="page-head">
+      <h2>成都专场</h2>
+      <p>收录成都地区物联网 / 嵌入式相关招聘:大厂在蓉机构与本土智能硬件企业都在列,大小厂一网打尽。</p>
+    </div>
+    <div class="city-banner">
+      <div>
+        <strong>为什么关注成都?</strong>
+        天府软件园 & 高新区聚集了华为成研所、腾讯、美团、京东方等大厂在蓉机构,以及极米(智能投影)、纵横(工业无人机)、华鲲振宇(鲲鹏算力)、秦川物联(智能表计)等本土智能硬件公司,还有中电科 10/29/30 所、中移成研院等科研院所——物联网专业在蓉选择面很广。
+      </div>
+      <div class="city-stats" id="chengduStats"></div>
+    </div>
+    <div class="filters">
+      <input type="search" id="cdSearch" class="f-search" placeholder="搜索公司 / 岗位 / 备注…">
+      <select id="cdType">
+        <option value="all">全部类型</option>
+        <option value="校招">秋招校招</option>
+        <option value="实习">实习</option>
+      </select>
+      <select id="cdDirection"><option value="all">全部方向</option></select>
+      <label class="f-check"><input type="checkbox" id="cdHideExpired"> 隐藏已截止</label>
+    </div>
+    <div class="list-meta" id="cdCount"></div>
+    <div class="cards" id="chengduList"></div>
+    <div class="empty" id="chengduEmpty" hidden>
+      <p>没有符合条件的成都岗位。</p>
+      <p class="empty-sub">试试放宽筛选;发现好岗位欢迎到「我要投稿」分享!</p>
+    </div>
+  </section>
+
   <!-- ============ 秋招时间线 ============ -->
   <section id="page-timeline" class="page">
     <div class="page-head">
@@ -102,6 +135,59 @@
     <div id="roadmapList" class="roadmap-list"></div>
   </section>
 
+  <!-- ============ 我要投稿 ============ -->
+  <section id="page-submit" class="page">
+    <div class="page-head">
+      <h2>我要投稿</h2>
+      <p>发现好岗位?填表分享给全班。提交后会跳转 GitHub 生成标准投稿单,维护者核实后上架到看板。</p>
+    </div>
+
+    <div class="flow-steps">
+      <span class="step"><b>1</b> 填写并提交表单</span>
+      <span class="step"><b>2</b> 在 GitHub 确认提交(需登录)</span>
+      <span class="step"><b>3</b> 维护者核实后上架</span>
+    </div>
+
+    <form id="subForm" class="sub-form" novalidate>
+      <div class="form-grid">
+        <label>公司名称 <em>*</em><input id="sfCompany" required placeholder="如:成都极米科技"></label>
+        <label>岗位名称 <em>*</em><input id="sfPosition" required placeholder="如:嵌入式软件工程师(2027校招)"></label>
+        <label>类型 <em>*</em>
+          <select id="sfType">
+            <option value="校招">校招 / 提前批</option>
+            <option value="实习">实习</option>
+          </select>
+        </label>
+        <label>技术方向 <em>*</em>
+          <select id="sfDirection">
+            <option>综合</option>
+            <option>嵌入式软件</option>
+            <option>硬件</option>
+            <option>物联网平台</option>
+            <option>驱动</option>
+            <option>测试</option>
+            <option>算法</option>
+          </select>
+        </label>
+        <label>工作城市 <em>*</em><input id="sfCity" required placeholder="如:成都(多城市用 / 分隔)"></label>
+        <label>薪资范围<input id="sfSalary" placeholder="没有公开数据就留空"></label>
+        <label>截止日期<input id="sfDeadline" type="date"></label>
+        <label>招聘对象<input id="sfDegree" placeholder="如:2027届本硕"></label>
+        <label class="full">投递链接(务必官方渠道) <em>*</em><input id="sfUrl" type="url" required placeholder="https://…"></label>
+        <label class="full">备注(流程 / 志愿规则 / 内推等)<textarea id="sfNote" rows="2" placeholder="选填"></textarea></label>
+        <label class="full">信息来源 <em>*</em><input id="sfSource" required placeholder="官网 / 公众号 / 牛客帖链接等"></label>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">提交投稿(跳转 GitHub)</button>
+        <button type="button" class="btn" id="sfCopy">复制投稿内容(发给维护者)</button>
+      </div>
+      <p class="form-hint">没有 GitHub 账号?点「复制投稿内容」发给维护者微信,一样能上架。所有信息以官方渠道为准,禁止投递无关链接。</p>
+    </form>
+
+    <h3 class="sub-head">最新网友投稿 <span class="sub-note">实时拉取自仓库 GitHub Issues,维护者核实后上架并关闭</span></h3>
+    <div id="issueList" class="issue-list"><p class="issue-loading">加载中…</p></div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
@@ -119,8 +205,10 @@
 <script src="data/roadmap.js"></script>
 <script src="js/app.js"></script>
 <script src="js/jobs.js"></script>
+<script src="js/chengdu.js"></script>
 <script src="js/timeline.js"></script>
 <script src="js/interviews.js"></script>
 <script src="js/roadmap.js"></script>
+<script src="js/submit.js"></script>
 </body>
 </html>

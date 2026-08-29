@@ -147,4 +147,7 @@
   bindEvents();
   render();
   App.updateStats(DATA);
+
+  /* 供成都专场复用同一卡片渲染与交互 */
+  App.jobCard = jobCard;
 })();

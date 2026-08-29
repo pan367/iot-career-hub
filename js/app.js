@@ -95,7 +95,7 @@ window.App = (function () {
   };
 
   /* ---------- 页面切换(hash 路由) ---------- */
-  const PAGES = ["jobs", "timeline", "interviews", "roadmap"];
+  const PAGES = ["jobs", "chengdu", "timeline", "interviews", "roadmap", "submit"];
   const showPage = (name) => {
     if (!PAGES.includes(name)) name = "jobs";
     document.querySelectorAll(".page").forEach(p =>
@@ -130,18 +130,11 @@ window.App = (function () {
     document.getElementById("lastUpdated").textContent = latest;
   };
 
-  /* ---------- 页脚投稿按钮 ---------- */
+  /* ---------- 页脚投稿按钮:跳转到投稿板块 ---------- */
   const initFooter = () => {
-    const btn = document.getElementById("submitBtn");
-    if (SITE_CONFIG.repo) {
-      btn.addEventListener("click", () =>
-        window.open(`https://github.com/${SITE_CONFIG.repo}/issues/new?template=job-submission.md`, "_blank"));
-    } else {
-      btn.textContent = "投稿:请先在 js/app.js 配置 SITE_CONFIG.repo";
-      btn.disabled = true;
-      btn.style.opacity = ".55";
-      btn.style.cursor = "not-allowed";
-    }
+    document.getElementById("submitBtn").addEventListener("click", () => {
+      location.hash = "/submit";
+    });
   };
 
   const init = () => {
