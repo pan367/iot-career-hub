@@ -9,6 +9,7 @@
 
   const state = {
     q: "", type: "all", direction: "all", city: "all", degree: "all",
+    ctype: "all", verifiedOnly: false,
     sort: "deadline", hideExpired: false, favOnly: false,
   };
 
@@ -69,6 +70,7 @@
         <div class="job-actions">
           <button class="btn" data-copy="${escapeHtml(j.id)}" title="复制为群聊分享文案">复制</button>
           <button class="btn" data-opt="${escapeHtml(j.id)}" title="按此岗位方向优化简历">简历优化</button>
+          <button class="btn" data-plat="${escapeHtml(j.id)}" title="在智联/BOSS/牛客/实习僧搜索该公司">🔎 平台搜</button>
           <a class="btn btn-primary" href="${escapeHtml(j.url)}" target="_blank" rel="noopener">去投递 ↗</a>
         </div>
       </div>
@@ -82,6 +84,9 @@
       if (state.direction !== "all" && j.direction !== state.direction) return false;
       if (state.city !== "all" && j.city.split("/").map(s => s.trim()).indexOf(state.city) === -1) return false;
       if (state.degree !== "all" && !App.degreeMatched(j.degree, state.degree)) return false;
+      const ct = window.getCompanyType ? window.getCompanyType(j.company) : { type: "其他", verified: false };
+      if (state.ctype !== "all" && ct.type !== state.ctype) return false;
+      if (state.verifiedOnly && !ct.verified) return false;
       if (state.favOnly && !favs.includes(j.id)) return false;
       if (state.hideExpired && isExpired(j)) return false;
       if (state.q) {
@@ -116,14 +121,18 @@
 
   function buildOptions() {
     const directions = [...new Set(DATA.map(j => j.direction))];
-    const cities = [...new Set(DATA.flatMap(j => j.city.split("/").map(s => s.trim())))].sort();
+    const ctypes = window.COMPANY_TYPES ? [...new Set(Object.values(window.COMPANY_TYPES).map(c => c.type))].sort() : [];
     document.getElementById("fDirection").innerHTML =
       `<option value="all">全部方向</option>` +
       directions.map(d => `<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`).join("");
     document.getElementById("fCity").innerHTML =
       `<option value="all">全部城市</option>` +
-      cities.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+      cities().map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+    document.getElementById("fCtype").innerHTML =
+      `<option value="all">全部公司类型</option>` +
+      ctypes.map(t => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join("");
   }
+  const cities = () => [...new Set(DATA.flatMap(j => j.city.split("/").map(s => s.trim())))].sort();
 
   function bindEvents() {
     document.getElementById("fSearch").addEventListener("input", e => { state.q = e.target.value.trim(); render(); });
@@ -135,6 +144,8 @@
       lsSet("iot-hub-degree", state.degree === "all" ? null : state.degree);
       render();
     });
+    document.getElementById("fCtype").addEventListener("change", e => { state.ctype = e.target.value; render(); });
+    document.getElementById("fVerified").addEventListener("change", e => { state.verifiedOnly = e.target.checked; render(); });
     document.getElementById("fSort").addEventListener("change", e => { state.sort = e.target.value; render(); });
     document.getElementById("fHideExpired").addEventListener("change", e => { state.hideExpired = e.target.checked; render(); });
     document.getElementById("fFavOnly").addEventListener("change", e => { state.favOnly = e.target.checked; render(); });
@@ -168,6 +179,20 @@
         const job = DATA.find(j => j.id === opt.dataset.opt);
         const dirMap = { "嵌入式软件": "embedded", "硬件": "hardware", "物联网平台": "iot", "驱动": "driver", "测试": "test", "算法": "algorithm" };
         location.hash = "/resume?dir=" + (dirMap[job.direction] || "embedded");
+        return;
+      }
+      const plat = e.target.closest("[data-plat]");
+      if (plat) {
+        const job = DATA.find(j => j.id === plat.dataset.plat);
+        const kw = encodeURIComponent(job.company.replace(/\s*\(.*?\)/g, ""));
+        const urls = [
+          `https://sou.zhaopin.com/?kw=${kw}`,
+          `https://www.zhipin.com/web/geek/job?query=${kw}`,
+          `https://www.nowcoder.com/search?type=post&query=${kw}`,
+          `https://www.shixiseng.com/interns?k=${kw}`,
+        ];
+        urls.forEach(u => window.open(u, "_blank"));
+        toast("已在智联/BOSS/牛客/实习僧打开该公司搜索页");
       }
     });
   }

@@ -198,6 +198,8 @@
       <select id="fDirection"><option value="all">全部方向</option></select>
       <select id="fCity"><option value="all">全部城市</option></select>
       <select id="fDegree"><option value="all">全部学历</option><option>本科</option><option>硕士</option><option>博士</option></select>
+      <select id="fCtype"><option value="all">全部公司类型</option></select>
+      <label class="f-check"><input type="checkbox" id="fVerified"> 只看知名企业</label>
       <select id="fSort">
         <option value="deadline">按截止时间排序</option>
         <option value="updated">按更新时间排序</option>
@@ -333,6 +335,16 @@
       <!-- 编辑区 -->
       <div class="panel" id="editorPanel">
         <h3 class="panel-title">✏️ 编辑简历 <span class="sub-note">输入自动保存(存于本机)</span></h3>
+
+        <div class="upload-box">
+          <div class="upload-head">📎 上传简历自动识别</div>
+          <p class="upload-tip">上传你已有的 PDF / Word 简历,自动识别姓名/电话/邮箱/学校/专业/技能并填充到左侧表单。<b>识别结果请人工核对</b>(扫描件/图片版简历无法识别文字)。</p>
+          <div class="upload-ops">
+            <label class="btn btn-primary" for="resumeFile">选择简历文件(PDF/DOCX)</label>
+            <input type="file" id="resumeFile" accept=".pdf,.docx" hidden>
+            <span class="upload-state" id="uploadState">未选择文件</span>
+          </div>
+        </div>
 
         <h4 class="block-title">基本信息</h4>
         <div class="form-grid">
@@ -541,22 +553,27 @@
 
 <div id="toast" role="status" aria-live="polite"></div>
 
-<script src="data/jobs.js?v=20260902"></script>
-<script src="data/timeline.js?v=20260902"></script>
-<script src="data/interviews.js?v=20260902"></script>
-<script src="data/roadmap.js?v=20260902"></script>
-<script src="data/resume.js?v=20260902"></script>
-<script src="js/app.js?v=20260902"></script>
-<script src="js/home.js?v=20260902"></script>
-<script src="js/jobs.js?v=20260902"></script>
-<script src="js/chengdu.js?v=20260902"></script>
-<script src="js/degree.js?v=20260902"></script>
-<script src="js/timeline.js?v=20260902"></script>
-<script src="js/interviews.js?v=20260902"></script>
-<script src="js/roadmap.js?v=20260902"></script>
-<script src="js/resume.js?v=20260902"></script>
-<script src="js/apply.js?v=20260902"></script>
-<script src="js/submit.js?v=20260902"></script>
-<script src="js/feedback.js?v=20260902"></script>
+<script src="data/jobs.js?v=20260903"></script>
+<script src="data/company-types.js?v=20260903"></script>
+<script src="data/updated.js?v=20260903"></script>
+<script src="data/timeline.js?v=20260903"></script>
+<script src="data/interviews.js?v=20260903"></script>
+<script src="data/roadmap.js?v=20260903"></script>
+<script src="data/resume.js?v=20260903"></script>
+<script src="js/app.js?v=20260903"></script>
+<script src="js/home.js?v=20260903"></script>
+<script src="js/jobs.js?v=20260903"></script>
+<script src="js/chengdu.js?v=20260903"></script>
+<script src="js/degree.js?v=20260903"></script>
+<script src="js/timeline.js?v=20260903"></script>
+<script src="js/interviews.js?v=20260903"></script>
+<script src="js/roadmap.js?v=20260903"></script>
+<script src="js/resume.js?v=20260903"></script>
+<script src="js/apply.js?v=20260903"></script>
+<script src="js/submit.js?v=20260903"></script>
+<script src="js/feedback.js?v=20260903"></script>
+<!-- 简历解析库(CDN) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 </body>
 </html>

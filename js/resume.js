@@ -329,6 +329,97 @@
     renderPreview();
   }
 
+  /* ================= 简历上传识别(PDF/DOCX → 正则提取 → 填充表单) ================= */
+  const uploadState = document.getElementById("uploadState");
+  const setUploadState = (msg, isErr) => {
+    uploadState.textContent = msg;
+    uploadState.style.color = isErr ? "var(--danger)" : "var(--text-3)";
+  };
+
+  /* 正则提取器 */
+  function extractInfo(text) {
+    const out = {};
+    const phone = text.match(/1[3-9]\d{9}/);
+    if (phone) out.phone = phone[0];
+    const email = text.match(/[\w.-]+@[\w.-]+\.\w+/);
+    if (email) out.email = email[0];
+    const school = text.match(/[\u4e00-\u9fa5]{2,12}(大学|学院|学校)(?![\u4e00-\u9fa5])/);
+    if (school) out.school = school[0];
+    const majorList = ["物联网工程", "嵌入式", "计算机科学", "软件工程", "电子信息", "通信工程", "自动化", "电气工程", "人工智能", "网络工程", "微电子", "机械电子", "信息工程", "电子科学"];
+    const major = majorList.find(m => text.includes(m));
+    if (major) out.major = major;
+    /* 技能关键词 */
+    const skillList = ["C/C++", "C语言", "Python", "STM32", "FreeRTOS", "RTOS", "MQTT", "Linux", "嵌入式Linux", "ESP32", "单片机", "Keil", "DMA", "UART", "I2C", "SPI", "Zigbee", "BLE", "LoRa", "NB-IoT", "Java", "MySQL", "PCB", "立创EDA", "Altium", "PyTorch", "TensorFlow", "OpenCV", "Node.js", "Git", "Docker", "ROS", "MATLAB"];
+    const skills = skillList.filter(s => text.includes(s));
+    if (skills.length) out.skills = skills.join(", ");
+    /* 姓名:常见前缀模式 */
+    const namePatterns = [
+      text.match(/姓名[:：\s]*([\u4e00-\u9fa5]{2,4})/),
+      text.match(/name[:：\s]*([A-Za-z\s]{2,20})/i),
+    ];
+    for (const m of namePatterns) {
+      if (m && m[1]) { out.name = m[1].trim(); break; }
+    }
+    return out;
+  }
+
+  async function parsePdf(file) {
+    const buf = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+    let text = "";
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      text += content.items.map(it => it.str).join(" ") + "\n";
+    }
+    return text;
+  }
+  async function parseDocx(file) {
+    const buf = await file.arrayBuffer();
+    const result = await mammoth.extractRawText({ arrayBuffer: buf });
+    return result.value;
+  }
+
+  function fillFromResume(info) {
+    if (info.name) { doc.basic.name = info.name; $("rName").value = info.name; }
+    if (info.phone) { doc.basic.phone = info.phone; $("rPhone").value = info.phone; }
+    if (info.email) { doc.basic.email = info.email; $("rEmail").value = info.email; }
+    if (info.school || info.major) {
+      /* 已有教育行则补全,否则新建 */
+      if (doc.edu.length) {
+        if (info.school) doc.edu[0].school = info.school;
+        if (info.major) doc.edu[0].major = info.major;
+      } else {
+        doc.edu.push({ school: info.school || "", major: info.major || "", degree: "", start: "", end: "", courses: "" });
+      }
+    }
+    if (info.skills) { doc.skills = info.skills; $("rSkills").value = info.skills; }
+    save();
+    renderLists();
+    renderPreview();
+  }
+
+  function bindUpload() {
+    document.getElementById("resumeFile").addEventListener("change", async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const ext = file.name.split(".").pop().toLowerCase();
+      setUploadState("正在解析…");
+      try {
+        const text = ext === "pdf" ? await parsePdf(file) : ext === "docx" ? await parseDocx(file) : null;
+        if (!text) { setUploadState("不支持的格式,仅支持 PDF/DOCX", true); return; }
+        if (text.trim().length < 30) { setUploadState("未能识别到文字(可能是扫描件/图片版),请手动填写", true); return; }
+        const info = extractInfo(text);
+        fillFromResume(info);
+        setUploadState(`识别完成:${Object.keys(info).length} 项已填充,请人工核对`);
+        toast("简历已识别并填充,请核对信息");
+      } catch (err) {
+        setUploadState("解析失败:" + err.message, true);
+      }
+    });
+  }
+  bindUpload();
+
   /* ================= 初始化(支持 #/resume?dir=xxx 直达) ================= */
   (function init() {
     const m = (location.hash || "").match(/dir=([a-z]+)/);

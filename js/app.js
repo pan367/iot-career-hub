@@ -121,19 +121,27 @@ window.App = (function () {
   };
 
   /* ---------- 首页统计 ---------- */
+  /* 更新时间:优先 GitHub Actions 自动写入的真实时间(SITE_UPDATED),否则回退数据最新核实日期 */
+  const siteUpdatedAt = () => {
+    const u = window.SITE_UPDATED;
+    if (u && u.at) return u.at;
+    const jobs = window.JOBS_DATA || [];
+    return jobs.reduce((m, j) => (j.updated && j.updated > m ? j.updated : m), "1970-01-01");
+  };
   const updateStats = (jobs) => {
     const active = jobs.filter(j => !(j.deadline && daysUntil(j.deadline) < 0));
     const companies = new Set(active.map(j => j.company)).size;
     const expiring = active.filter(j =>
       j.deadline && daysUntil(j.deadline) >= 0 && daysUntil(j.deadline) <= 7).length;
-    const latest = jobs.reduce((m, j) => (j.updated && j.updated > m ? j.updated : m), "1970-01-01");
+    const latest = siteUpdatedAt();
 
     document.getElementById("heroStats").innerHTML = `
       <div class="stat-card"><div class="stat-num">${active.length}</div><div class="stat-label">在招岗位/项目</div></div>
       <div class="stat-card"><div class="stat-num">${companies}</div><div class="stat-label">覆盖公司</div></div>
       <div class="stat-card"><div class="stat-num">${expiring}</div><div class="stat-label">7 天内截止</div></div>
-      <div class="stat-card"><div class="stat-num">${fmtShort(latest)}</div><div class="stat-label">最近更新</div></div>`;
-    document.getElementById("lastUpdated").textContent = latest;
+      <div class="stat-card"><div class="stat-num">${fmtShort(latest)}</div><div class="stat-label">最后自动更新</div></div>`;
+    document.getElementById("lastUpdated").textContent =
+      (window.SITE_UPDATED && window.SITE_UPDATED.at) ? window.SITE_UPDATED.at + " 自动更新" : latest;
   };
 
   /* ---------- 页脚投稿按钮:跳转到投稿板块 ---------- */

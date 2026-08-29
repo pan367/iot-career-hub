@@ -1,0 +1,39 @@
+name: 自动更新(每天 5:00 / 12:00 北京时间)
+
+on:
+  schedule:
+    # UTC 21:00 = 北京时间 05:00;UTC 04:00 = 北京时间 12:00
+    - cron: '0 21 * * *'
+    - cron: '0 4 * * *'
+  workflow_dispatch: # 支持手动触发测试
+
+permissions:
+  contents: write
+
+jobs:
+  auto-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 运行自动更新脚本(校验数据 + 写入真实时间戳)
+        run: python scripts/auto_update.py
+
+      - name: 提交变更(时间戳有变化才提交)
+        run: |
+          git config user.name "iot-career-hub-bot"
+          git config user.email "bot@iot-career-hub.local"
+          git add data/updated.js
+          if git diff --cached --quiet; then
+            echo "无变更,跳过提交"
+          else
+            git commit -m "chore: 自动更新数据时间戳 $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+            echo "已提交并推送"
+          fi
