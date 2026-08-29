@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20260830">
+<link rel="stylesheet" href="css/style.css?v=20260831">
 </head>
 <body>
 
@@ -63,10 +63,10 @@
         <div class="home-nav-left">
           <span class="home-logo anim-fade-up" style="animation-delay:200ms">LŪMEN // ÍNDEX</span>
           <div class="home-links">
-            <a class="home-link anim-fade-up" style="animation-delay:350ms" href="#/jobs"><span class="hl-num">01.</span><span class="hl-label">ECOSYSTEM</span></a>
-            <a class="home-link anim-fade-up" style="animation-delay:450ms" href="#/timeline"><span class="hl-num">02.</span><span class="hl-label">LIQUIDITY_POOLS</span></a>
-            <a class="home-link anim-fade-up" style="animation-delay:550ms" href="#/interviews"><span class="hl-num">03.</span><span class="hl-label">LUMEN_INDEX</span></a>
-            <a class="home-link anim-fade-up" style="animation-delay:650ms" href="#/roadmap"><span class="hl-num">04.</span><span class="hl-label">GOVERNANCE</span></a>
+            <a class="home-link anim-fade-up" style="animation-delay:350ms" href="#/jobs"><span class="hl-num">01.</span><span class="hl-label">岗位看板</span></a>
+            <a class="home-link anim-fade-up" style="animation-delay:450ms" href="#/timeline"><span class="hl-num">02.</span><span class="hl-label">秋招时间线</span></a>
+            <a class="home-link anim-fade-up" style="animation-delay:550ms" href="#/interviews"><span class="hl-num">03.</span><span class="hl-label">面经笔试</span></a>
+            <a class="home-link anim-fade-up" style="animation-delay:650ms" href="#/roadmap"><span class="hl-num">04.</span><span class="hl-label">学习路线</span></a>
           </div>
         </div>
         <div class="home-wallet anim-slide-right" style="animation-delay:600ms">
@@ -88,13 +88,13 @@
         <div class="hm-panel">
           <button class="hm-close" id="hmClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
           <div class="hm-list" id="hmList">
-            <a class="hm-item" href="#/jobs" data-d="0"><span class="hmi-num">01.</span><span class="hmi-label">ECOSYSTEM</span></a>
-            <a class="hm-item" href="#/timeline" data-d="1"><span class="hmi-num">02.</span><span class="hmi-label">LIQUIDITY_POOLS</span></a>
-            <a class="hm-item" href="#/interviews" data-d="2"><span class="hmi-num">03.</span><span class="hmi-label">LUMEN_INDEX</span></a>
-            <a class="hm-item" href="#/roadmap" data-d="3"><span class="hmi-num">04.</span><span class="hmi-label">GOVERNANCE</span></a>
-            <a class="hm-item" href="#/resume" data-d="4"><span class="hmi-num">05.</span><span class="hmi-label">RESUME_STUDIO</span></a>
-            <a class="hm-item" href="#/apply" data-d="5"><span class="hmi-num">06.</span><span class="hmi-label">APPLY_DESK</span></a>
-            <a class="hm-item" href="#/submit" data-d="6"><span class="hmi-num">07.</span><span class="hmi-label">SUBMIT_ISSUE</span></a>
+            <a class="hm-item" href="#/jobs" data-d="0"><span class="hmi-num">01.</span><span class="hmi-label">岗位看板</span></a>
+            <a class="hm-item" href="#/timeline" data-d="1"><span class="hmi-num">02.</span><span class="hmi-label">秋招时间线</span></a>
+            <a class="hm-item" href="#/interviews" data-d="2"><span class="hmi-num">03.</span><span class="hmi-label">面经笔试</span></a>
+            <a class="hm-item" href="#/roadmap" data-d="3"><span class="hmi-num">04.</span><span class="hmi-label">学习路线</span></a>
+            <a class="hm-item" href="#/resume" data-d="4"><span class="hmi-num">05.</span><span class="hmi-label">简历工坊</span></a>
+            <a class="hm-item" href="#/apply" data-d="5"><span class="hmi-num">06.</span><span class="hmi-label">投递工作台</span></a>
+            <a class="hm-item" href="#/submit" data-d="6"><span class="hmi-num">07.</span><span class="hmi-label">我要投稿</span></a>
           </div>
           <div class="hm-wallet" id="hmWallet">
             <div class="hmw-row1">
@@ -134,9 +134,9 @@
 
       <!-- 中央节点图(≥768px 显示) -->
       <div class="home-nodes" aria-hidden="true">
-        <span class="hn-square" style="top:27%;left:60%;animation-delay:1500ms"></span>
-        <span class="hn-square" style="top:58%;left:32%;animation-delay:1800ms"></span>
-        <span class="hn-square" style="top:63%;left:50%;animation-delay:2100ms"></span>
+        <span class="hn-square n1" style="top:27%;left:60%;animation-delay:1500ms"></span>
+        <span class="hn-square n2" style="top:58%;left:32%;animation-delay:1800ms"></span>
+        <span class="hn-square n3" style="top:63%;left:50%;animation-delay:2100ms"></span>
 
         <div class="hn-label anim-slide-left" style="top:11%;left:26%;animation-delay:1100ms;max-width:160px">
           <span class="hnl-title">[ CORE_ENTITY ]</span>
@@ -501,21 +501,21 @@
 
 <div id="toast" role="status" aria-live="polite"></div>
 
-<script src="data/jobs.js?v=20260830"></script>
-<script src="data/timeline.js?v=20260830"></script>
-<script src="data/interviews.js?v=20260830"></script>
-<script src="data/roadmap.js?v=20260830"></script>
-<script src="data/resume.js?v=20260830"></script>
-<script src="js/app.js?v=20260830"></script>
-<script src="js/home.js?v=20260830"></script>
-<script src="js/jobs.js?v=20260830"></script>
-<script src="js/chengdu.js?v=20260830"></script>
-<script src="js/degree.js?v=20260830"></script>
-<script src="js/timeline.js?v=20260830"></script>
-<script src="js/interviews.js?v=20260830"></script>
-<script src="js/roadmap.js?v=20260830"></script>
-<script src="js/resume.js?v=20260830"></script>
-<script src="js/apply.js?v=20260830"></script>
-<script src="js/submit.js?v=20260830"></script>
+<script src="data/jobs.js?v=20260831"></script>
+<script src="data/timeline.js?v=20260831"></script>
+<script src="data/interviews.js?v=20260831"></script>
+<script src="data/roadmap.js?v=20260831"></script>
+<script src="data/resume.js?v=20260831"></script>
+<script src="js/app.js?v=20260831"></script>
+<script src="js/home.js?v=20260831"></script>
+<script src="js/jobs.js?v=20260831"></script>
+<script src="js/chengdu.js?v=20260831"></script>
+<script src="js/degree.js?v=20260831"></script>
+<script src="js/timeline.js?v=20260831"></script>
+<script src="js/interviews.js?v=20260831"></script>
+<script src="js/roadmap.js?v=20260831"></script>
+<script src="js/resume.js?v=20260831"></script>
+<script src="js/apply.js?v=20260831"></script>
+<script src="js/submit.js?v=20260831"></script>
 </body>
 </html>

@@ -811,10 +811,24 @@ main { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; paddin
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh; /* 移动端地址栏收缩兼容 */
   min-height: 560px;
   overflow: hidden;
   background: #000;
   color: #fff;
+}
+/* 矮视口自适应(笔记本常见高度):标题紧凑、节点方块下移防重叠 */
+@media (max-height: 760px) and (min-width: 768px) {
+  .home-h1 { top: 140px; font-size: 56px; max-width: 460px; }
+  .home-nodes .n1 { top: 40%; }
+  .home-nodes .n2 { top: 66%; }
+  .home-nodes .n3 { top: 71%; }
+}
+@media (max-height: 640px) {
+  .home-h1 { top: 118px; font-size: 44px; max-width: 380px; }
+  .home-nodes .hn-square { width: 64px; height: 64px; }
+  .home-bottom { bottom: 16px; left: 20px; right: 20px; }
+  .home-nav { padding-top: 14px; padding-bottom: 14px; }
 }
 .home-video {
   position: absolute;
