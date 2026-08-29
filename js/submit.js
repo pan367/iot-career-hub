@@ -11,7 +11,7 @@
 
   const $ = (id) => document.getElementById(id);
   const FIELDS = ["sfCompany", "sfPosition", "sfType", "sfDirection", "sfCity",
-    "sfSalary", "sfDeadline", "sfDegree", "sfUrl", "sfNote", "sfSource"];
+    "sfSalary", "sfDeadline", "sfDegree", "sfPlat", "sfUrl", "sfNote", "sfSource"];
 
   /* ---------- 表单草稿持久化(防误关页面丢内容) ---------- */
   function saveDraft() {
@@ -37,6 +37,7 @@
       `**薪资范围**: ${v("sfSalary") || "(未填)"}`,
       `**截止日期**: ${v("sfDeadline") || "招满即止/滚动/未知"}`,
       `**招聘对象**: ${v("sfDegree") || "(未填)"}`,
+      `**信息来源平台**: ${v("sfPlat")}`,
       `**投递链接**: ${v("sfUrl")}`,
       `**备注**: ${v("sfNote") || "(无)"}`,
       `**信息来源**: ${v("sfSource")}`,

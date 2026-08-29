@@ -21,8 +21,33 @@ JOBS_FILE = BASE / "data" / "jobs.js"
 UPDATED_FILE = BASE / "data" / "updated.js"
 MIN_JOBS = 40  # 少于该条数视为数据异常,不提交
 
-# 预留:未来可接入的合规公开数据源(如高校就业网公开 RSS / 企业官方招聘公开接口)
+# 预留:未来可接入的合规公开数据源
+# 注意:商业招聘平台(智联/BOSS/牛客/实习僧等)禁止自动化抓取,本站不抓取;
+# 仅允许接入 公开、无登录墙、允许访问 的源(如国家大学生就业服务平台公开页)。
+# 配置示例:
+# FETCH_SOURCES = [
+#   {"name": "公开示例源", "url": "https://example.com/jobs", "parser": "json"},
+# ]
 FETCH_SOURCES = []
+
+
+def try_fetch_sources():
+    """尽力抓取公开数据源(合规)。成功则返回新增岗位列表,失败返回 [] 并记录日志,绝不伪造数据。"""
+    if not FETCH_SOURCES:
+        print("[auto-update] 未配置数据源,跳过抓取(岗位内容由人工维护 + 用户投稿)")
+        return []
+    added = []
+    for src in FETCH_SOURCES:
+        try:
+            import urllib.request
+            req = urllib.request.Request(src["url"], headers={"User-Agent": "Mozilla/5.0 (IoT-Career-Hub)"})
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                body = resp.read().decode("utf-8", errors="ignore")
+            print(f"[auto-update] 数据源 {src['name']} 抓取成功({len(body)} 字节)")
+            # TODO: 按 src["parser"] 解析 body → 生成岗位记录列表并写入 jobs.js(需维护者审核后合入)
+        except Exception as e:
+            print(f"[auto-update] 数据源 {src['name']} 抓取失败(跳过):{e}")
+    return added
 
 
 def beijing_now():
@@ -72,8 +97,8 @@ def main():
     print(f"[auto-update] 开始,北京时间 {beijing_now().strftime('%Y-%m-%d %H:%M:%S')}")
 
     if FETCH_SOURCES:
-        print("[auto-update] 已配置数据源,执行抓取(待实现)")
-        # TODO: 接入合规公开源后在此实现抓取并写入 JOBS_FILE
+        added = try_fetch_sources()
+        print(f"[auto-update] 本次抓取新增 {len(added)} 条(需审核后合入)")
 
     ids, errors = validate()
     if errors:

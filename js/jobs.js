@@ -9,7 +9,7 @@
 
   const state = {
     q: "", type: "all", direction: "all", city: "all", degree: "all",
-    ctype: "all", verifiedOnly: false,
+    ctype: "all", verifiedOnly: false, safeOnly: true,
     sort: "deadline", hideExpired: false, favOnly: false,
   };
 
@@ -29,6 +29,8 @@
   })();
 
   const isExpired = (j) => j.deadline && daysUntil(j.deadline) < 0;
+
+  const ctInfo = (j) => window.getCompanyType ? window.getCompanyType(j.company) : { type: "其他", verified: false, risky: false };
 
   function deadlineInfo(j) {
     if (!j.deadline) return { cls: "rolling", label: "招满即止 / 滚动招聘" };
@@ -54,6 +56,9 @@
           <div class="badges">
             <span class="badge b-type">${escapeHtml(j.type)}</span>
             <span class="badge b-dir">${escapeHtml(j.direction)}</span>
+            ${ctInfo(j).verified ? `<span class="badge b-ok">✓ 知名企业</span>` : ""}
+            ${ctInfo(j).risky ? `<span class="badge b-risky">⚠ 谨慎核实</span>` : ""}
+            <span class="badge b-plat">📥 ${escapeHtml(j.platform || "官网收录")}</span>
           </div>
         </div>
         <button class="star${on ? " on" : ""}" data-fav="${j.id}" title="收藏">★</button>
@@ -84,9 +89,10 @@
       if (state.direction !== "all" && j.direction !== state.direction) return false;
       if (state.city !== "all" && j.city.split("/").map(s => s.trim()).indexOf(state.city) === -1) return false;
       if (state.degree !== "all" && !App.degreeMatched(j.degree, state.degree)) return false;
-      const ct = window.getCompanyType ? window.getCompanyType(j.company) : { type: "其他", verified: false };
+      const ct = window.getCompanyType ? window.getCompanyType(j.company) : { type: "其他", verified: false, risky: false };
       if (state.ctype !== "all" && ct.type !== state.ctype) return false;
       if (state.verifiedOnly && !ct.verified) return false;
+      if (state.safeOnly && ct.risky) return false;
       if (state.favOnly && !favs.includes(j.id)) return false;
       if (state.hideExpired && isExpired(j)) return false;
       if (state.q) {
@@ -146,6 +152,7 @@
     });
     document.getElementById("fCtype").addEventListener("change", e => { state.ctype = e.target.value; render(); });
     document.getElementById("fVerified").addEventListener("change", e => { state.verifiedOnly = e.target.checked; render(); });
+    document.getElementById("fSafe").addEventListener("change", e => { state.safeOnly = e.target.checked; render(); });
     document.getElementById("fSort").addEventListener("change", e => { state.sort = e.target.value; render(); });
     document.getElementById("fHideExpired").addEventListener("change", e => { state.hideExpired = e.target.checked; render(); });
     document.getElementById("fFavOnly").addEventListener("change", e => { state.favOnly = e.target.checked; render(); });

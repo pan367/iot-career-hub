@@ -310,6 +310,9 @@ body.home-full #page-home { width: 100%; }
 }
 .badge.b-type { background: rgba(37, 99, 235, .1); color: var(--info); }
 .badge.b-dir { background: var(--accent-soft); color: var(--accent-dark); }
+.badge.b-ok { background: rgba(21, 128, 61, .12); color: var(--ok); }
+.badge.b-risky { background: rgba(217, 72, 46, .14); color: var(--danger); }
+.badge.b-plat { background: rgba(138, 153, 168, .12); color: var(--text-2); font-weight: 500; }
 .star {
   border: none; background: transparent;
   font-size: 19px; color: var(--text-3);
@@ -846,6 +849,16 @@ body.home-full #page-home { width: 100%; }
   .home-nodes .hn-square { width: 64px; height: 64px; }
   .home-bottom { bottom: 16px; left: 20px; right: 20px; }
   .home-nav { padding-top: 14px; padding-bottom: 14px; }
+}
+/* 小屏手机(≤420px):标题紧凑、CTA 全宽易点 */
+@media (max-width: 420px) {
+  .home-h1 { top: 118px; font-size: 28px; max-width: 260px; }
+  .home-bottom { bottom: 18px; left: 20px; right: 20px; }
+  .home-cta { width: 100%; justify-content: center; }
+  .home-logo { font-size: 16px; }
+  .home-nav { padding-top: 14px; padding-bottom: 14px; }
+  .hm-panel { padding-top: 84px; }
+  .hmi-label { font-size: 24px; }
 }
 .home-video {
   position: absolute;

@@ -6,7 +6,7 @@
   /* 复用岗位看板的卡片渲染:由 jobs.js 暴露到 App.jobCard */
   const DATA = (window.JOBS_DATA || []).filter(j => j.city.split("/").map(s => s.trim()).includes("成都"));
 
-  const state = { q: "", type: "all", direction: "all", hideExpired: false };
+  const state = { q: "", type: "all", direction: "all", hideExpired: false, safeOnly: true };
 
   const isExpired = (j) => j.deadline && daysUntil(j.deadline) < 0;
 
@@ -15,6 +15,8 @@
       if (state.type !== "all" && j.type !== state.type) return false;
       if (state.direction !== "all" && j.direction !== state.direction) return false;
       if (state.hideExpired && isExpired(j)) return false;
+      const ct = window.getCompanyType ? window.getCompanyType(j.company) : { risky: false };
+      if (state.safeOnly && ct.risky) return false;
       if (state.q) {
         const hay = (j.company + j.position + j.note + j.direction).toLowerCase();
         if (!hay.includes(state.q.toLowerCase())) return false;
@@ -61,6 +63,7 @@
     document.getElementById("cdType").addEventListener("change", e => { state.type = e.target.value; render(); });
     document.getElementById("cdDirection").addEventListener("change", e => { state.direction = e.target.value; render(); });
     document.getElementById("cdHideExpired").addEventListener("change", e => { state.hideExpired = e.target.checked; render(); });
+    document.getElementById("cdSafe").addEventListener("change", e => { state.safeOnly = e.target.checked; render(); });
 
     /* 收藏/复制与岗位看板共用 localStorage 与逻辑 */
     document.getElementById("chengduList").addEventListener("click", async (e) => {

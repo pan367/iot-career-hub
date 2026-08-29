@@ -12,8 +12,15 @@
 
   let myDegree = lsGet(DEG_K, "本科");
   if (!DEGREES.includes(myDegree)) myDegree = "本科";
+  let safeOnly = true;
 
-  const matched = (job) => classifyDegree(job.degree)[myDegree];
+  const matched = (job) => {
+    if (safeOnly) {
+      const ct = window.getCompanyType ? window.getCompanyType(job.company) : { risky: false };
+      if (ct.risky) return false;
+    }
+    return classifyDegree(job.degree)[myDegree];
+  };
 
   function degreeBadge(job) {
     const set = classifyDegree(job.degree);
@@ -46,6 +53,10 @@
       render();
       /* 通知岗位看板同会话联动更新 */
       window.dispatchEvent(new CustomEvent("iot:degree", { detail: myDegree }));
+    });
+    document.getElementById("degSafe").addEventListener("change", (e) => {
+      safeOnly = e.target.checked;
+      render();
     });
   }
 

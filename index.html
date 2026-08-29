@@ -200,6 +200,7 @@
       <select id="fDegree"><option value="all">全部学历</option><option>本科</option><option>硕士</option><option>博士</option></select>
       <select id="fCtype"><option value="all">全部公司类型</option></select>
       <label class="f-check"><input type="checkbox" id="fVerified"> 只看知名企业</label>
+      <label class="f-check"><input type="checkbox" id="fSafe" checked> 隐藏问题公司</label>
       <select id="fSort">
         <option value="deadline">按截止时间排序</option>
         <option value="updated">按更新时间排序</option>
@@ -237,6 +238,7 @@
         <option value="实习">实习</option>
       </select>
       <select id="cdDirection"><option value="all">全部方向</option></select>
+      <label class="f-check"><input type="checkbox" id="cdSafe" checked> 隐藏问题公司</label>
       <label class="f-check"><input type="checkbox" id="cdHideExpired"> 隐藏已截止</label>
     </div>
     <div class="list-meta" id="cdCount"></div>
@@ -273,6 +275,7 @@
     </div>
 
     <div class="list-meta" id="degCount"></div>
+    <label class="f-check" style="margin-bottom:10px"><input type="checkbox" id="degSafe" checked> 隐藏问题公司(仅显示信用良好的公司)</label>
     <div class="cards" id="degList"></div>
     <div class="empty" id="degEmpty" hidden>
       <p>该学历下暂无匹配岗位。</p>
@@ -488,6 +491,16 @@
         <label>薪资范围<input id="sfSalary" placeholder="没有公开数据就留空"></label>
         <label>截止日期<input id="sfDeadline" type="date"></label>
         <label>招聘对象<input id="sfDegree" placeholder="如:2027届本硕"></label>
+        <label>信息来源平台
+          <select id="sfPlat">
+            <option>公司官网</option>
+            <option>智联招聘</option>
+            <option>BOSS直聘</option>
+            <option>牛客网</option>
+            <option>实习僧</option>
+            <option>公众号/其他</option>
+          </select>
+        </label>
         <label class="full">投递链接(务必官方渠道) <em>*</em><input id="sfUrl" type="url" required placeholder="https://…"></label>
         <label class="full">备注(流程 / 志愿规则 / 内推等)<textarea id="sfNote" rows="2" placeholder="选填"></textarea></label>
         <label class="full">信息来源 <em>*</em><input id="sfSource" required placeholder="官网 / 公众号 / 牛客帖链接等"></label>
@@ -553,25 +566,25 @@
 
 <div id="toast" role="status" aria-live="polite"></div>
 
-<script src="data/jobs.js?v=20260903"></script>
-<script src="data/company-types.js?v=20260903"></script>
-<script src="data/updated.js?v=20260903"></script>
-<script src="data/timeline.js?v=20260903"></script>
-<script src="data/interviews.js?v=20260903"></script>
-<script src="data/roadmap.js?v=20260903"></script>
-<script src="data/resume.js?v=20260903"></script>
-<script src="js/app.js?v=20260903"></script>
-<script src="js/home.js?v=20260903"></script>
-<script src="js/jobs.js?v=20260903"></script>
-<script src="js/chengdu.js?v=20260903"></script>
-<script src="js/degree.js?v=20260903"></script>
-<script src="js/timeline.js?v=20260903"></script>
-<script src="js/interviews.js?v=20260903"></script>
-<script src="js/roadmap.js?v=20260903"></script>
-<script src="js/resume.js?v=20260903"></script>
-<script src="js/apply.js?v=20260903"></script>
-<script src="js/submit.js?v=20260903"></script>
-<script src="js/feedback.js?v=20260903"></script>
+<script src="data/jobs.js?v=20260904"></script>
+<script src="data/company-types.js?v=20260904"></script>
+<script src="data/updated.js?v=20260904"></script>
+<script src="data/timeline.js?v=20260904"></script>
+<script src="data/interviews.js?v=20260904"></script>
+<script src="data/roadmap.js?v=20260904"></script>
+<script src="data/resume.js?v=20260904"></script>
+<script src="js/app.js?v=20260904"></script>
+<script src="js/home.js?v=20260904"></script>
+<script src="js/jobs.js?v=20260904"></script>
+<script src="js/chengdu.js?v=20260904"></script>
+<script src="js/degree.js?v=20260904"></script>
+<script src="js/timeline.js?v=20260904"></script>
+<script src="js/interviews.js?v=20260904"></script>
+<script src="js/roadmap.js?v=20260904"></script>
+<script src="js/resume.js?v=20260904"></script>
+<script src="js/apply.js?v=20260904"></script>
+<script src="js/submit.js?v=20260904"></script>
+<script src="js/feedback.js?v=20260904"></script>
 <!-- 简历解析库(CDN) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
