@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# wrangler 本地缓存与账号凭据(切勿提交)
+serverless/.wrangler/
