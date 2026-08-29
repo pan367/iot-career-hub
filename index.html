@@ -5,9 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IoT 求职雷达 — 物联网工程实习 & 秋招信息汇总</title>
 <meta name="description" content="面向物联网工程专业大四学生的实习与秋招信息汇总:岗位看板、秋招时间线、面经笔试、学习路线。数据人工搜集自各公司官网与高校就业网。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<!-- 全站装饰层:网格线 + 冰蓝光晕(纯装饰,不拦截点击) -->
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
 
 <div class="disclaimer" role="note">
   ⚠️ 本站数据由同学人工搜集自各公司官网、高校就业网与牛客等公开渠道(更新于 <span id="lastUpdated">—</span>),投递前请务必以各公司官方渠道为准。
@@ -46,8 +53,9 @@
   <!-- ============ 岗位看板 ============ -->
   <section id="page-jobs" class="page active">
     <div class="hero">
-      <h1>物联网人的求职信息站</h1>
-      <p>实习 + 秋招岗位、时间节点、面经与学习路线,一页看完。</p>
+      <div class="hero-plus" aria-hidden="true"></div>
+      <h1 class="anim-fade-up" style="animation-delay:200ms">物联网人的求职信息站</h1>
+      <p class="anim-fade-up" style="animation-delay:320ms">实习 + 秋招岗位、时间节点、面经与学习路线,一页看完。</p>
       <div class="stats" id="heroStats"></div>
     </div>
 

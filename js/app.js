@@ -82,8 +82,7 @@ window.App = (function () {
   /* ---------- 主题 ---------- */
   const initTheme = () => {
     const saved = lsGet("iot-hub-theme", null);
-    const dark = saved ? saved === "dark"
-      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const dark = saved ? saved === "dark" : true; // 默认纯黑主题(冰蓝强调)
     document.documentElement.dataset.theme = dark ? "dark" : "light";
     document.getElementById("themeIcon").textContent = dark ? "☀️" : "🌙";
   };
