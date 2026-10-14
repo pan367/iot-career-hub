@@ -1,2 +1,2 @@
 /* 由 .github/workflows/auto-update.yml 自动生成,请勿手改 */
-window.SITE_UPDATED = { at: "2026-10-13 19:35" };
+window.SITE_UPDATED = { at: "2026-10-14 08:03" };
